@@ -12,25 +12,15 @@ def main(argv):
         showHelp()
         sys.exit(2)
     for opt, arg in opts:
-        if opt in ("-h", "--help"):
-            showHelp()
-            sys.exit()
-        elif opt in ("--status"):
-            showCurrentSong()
-        elif opt in ("--play"):
-            perfomSpotifyAction("Play")
-        elif opt in ("--pause"):
-            perfomSpotifyAction("Pause")
-        elif opt in ("--playpause"):
-            perfomSpotifyAction("PlayPause")
-        elif opt in ("--next"):
-            perfomSpotifyAction("Next")
-        elif opt in ("--prev", "--previous"):
-            perfomSpotifyAction("Previous")
-        elif opt == "--volumeup":
-            controlVolume("+10%")
-        elif opt == "--volumedown":
-            controlVolume("-10%")
+        if opt in ("-h", "--help"):             showHelp()
+        elif opt == "--status":                 showCurrentSong()
+        elif opt == "--play":                   perfomSpotifyAction("Play")
+        elif opt == "--pause":                  perfomSpotifyAction("Pause")
+        elif opt == "--playpause":              perfomSpotifyAction("PlayPause")
+        elif opt == "--next":                   perfomSpotifyAction("Next")
+        elif opt in ("--prev", "--previous"):   perfomSpotifyAction("Previous")
+        elif opt == "--volumeup":               controlVolume("+10%")
+        elif opt == "--volumedown":             controlVolume("-10%")
 
 
 def showHelp():
