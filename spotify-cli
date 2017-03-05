@@ -28,9 +28,9 @@ def main(argv):
         elif opt in ("--prev", "--previous"):
             perfomSpotifyAction("Previous")
         elif opt == "--volumeup":
-            volumeUp()
+            controlVolume("+10%")
         elif opt == "--volumedown":
-            volumeDown()
+            controlVolume("-10%")
 
 
 def showHelp():
@@ -67,14 +67,11 @@ def showCurrentSong():
         print "error: couldn't read song"
 
 def perfomSpotifyAction(spotifyCommand):
-    p = Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
+    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
     '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' % spotifyCommand, shell=True, stdout=PIPE)
 
-def volumeUp():
-    p = Popen('pactl set-sink-volume 0 +10%', shell=True, stdout=PIPE)
-
-def volumeDown():
-    p = Popen('pactl set-sink-volume 0 -10%', shell=True, stdout=PIPE)
+def controlVolume(volumePercent):
+    Popen('pactl set-sink-volume 0 "%s"' % volumePercent, shell=True, stdout=PIPE)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
