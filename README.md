@@ -31,7 +31,7 @@ use one of the following parameters:
 --help, -h          shows help
 --status            shows status (currently played song name and artist)
 --play              plays the song
---pause             pause the song
+--pause             pauses the song
 --playpause         plays or pauses the song (toggles a state)
 --next              plays the next song
 --previous, --prev  plays the previous song

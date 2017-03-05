@@ -29,7 +29,7 @@ def showHelp():
           '    --help, -h\t\tshows help\n' \
           '    --status\t\tshows status (currently played song name and artist)\n' \
           '    --play\t\tplays the song\n' \
-          '    --pause\t\tpause the song\n' \
+          '    --pause\t\tpauses the song\n' \
           '    --playpause\t\tplays or pauses the song (toggles a state)\n' \
           '    --next\t\tplays the next song\n' \
           '    --previous, --prev\tplays the previous song\n' \
