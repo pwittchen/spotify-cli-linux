@@ -40,7 +40,7 @@ def showHelp():
           '    --status\t\tshows status (currently played song name and artist)\n' \
           '    --play\t\tplays the song\n' \
           '    --pause\t\tpause the song\n' \
-          '    --playpause\t\tplay or pause the song (toggling state)\n' \
+          '    --playpause\t\tplays or pauses the song (toggles a state)\n' \
           '    --next\t\tplays the next song\n' \
           '    --previous, --prev\tplays the previous song\n' \
           '    --volumeup\t\tincreases sound volume\n' \
