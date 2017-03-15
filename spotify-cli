@@ -51,7 +51,7 @@ def showCurrentSong():
         # print artist name and track title
         title = metadata['xesam:title'][:10] + (metadata['xesam:title'][10:] and '...')
         artist = metadata['xesam:artist'][0][:15] + (metadata['xesam:artist'][0][15:] and '...')
-        print ("%s - %s") % (artist, title)
+        print ("%s - %s" % (artist, title))
     except:
         # we go here when spotify is turned off
         print ("error: couldn't read song")
