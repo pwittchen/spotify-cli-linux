@@ -24,7 +24,7 @@ def main(argv):
 
 
 def showHelp():
-    print '\n  spotify-cli is a command line interface for Spotify on Linux\n\n' \
+    print ('\n  spotify-cli is a command line interface for Spotify on Linux\n\n' \
           '  usage:\n' \
           '    --help, -h\t\tshows help\n' \
           '    --status\t\tshows status (currently played song name and artist)\n' \
@@ -34,7 +34,7 @@ def showHelp():
           '    --next\t\tplays the next song\n' \
           '    --previous, --prev\tplays the previous song\n' \
           '    --volumeup\t\tincreases sound volume\n' \
-          '    --volumedown\tdecreases sound volume\n' \
+          '    --volumedown\tdecreases sound volume\n') \
 
 def showCurrentSong():
     try:
@@ -51,10 +51,10 @@ def showCurrentSong():
         # print artist name and track title
         title = metadata['xesam:title'][:10] + (metadata['xesam:title'][10:] and '...')
         artist = metadata['xesam:artist'][0][:15] + (metadata['xesam:artist'][0][15:] and '...')
-        print "%s - %s" % (artist, title)
+        print ("%s - %s" % (artist, title))
     except:
         # we go here when spotify is turned off
-        print "error: couldn't read song"
+        print ("error: couldn't read song")
 
 def perfomSpotifyAction(spotifyCommand):
     Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
