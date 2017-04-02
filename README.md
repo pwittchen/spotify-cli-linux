@@ -38,3 +38,20 @@ use one of the following parameters:
 --volumeup          increases sound volume
 --volumedown        decreases sound volume
 ```
+
+solving problems
+----------------
+
+When you've seen the following error:
+
+```
+No module named dbus
+```
+
+Then try to install `python-dbus`! On Ubuntu you can do it as follows:
+
+```
+sudo apt-get install python-dbus
+```
+
+If you are using another distro, then try to install `python-dbus` with your package manager.
