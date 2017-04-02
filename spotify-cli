@@ -54,7 +54,7 @@ def showCurrentSong():
         print ("%s - %s" % (artist, title))
     except:
         # we go here when spotify is turned off
-        print ("error: couldn't read song")
+        print ("spotify is off")
 
 def perfomSpotifyAction(spotifyCommand):
     Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
