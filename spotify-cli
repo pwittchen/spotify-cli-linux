@@ -19,8 +19,8 @@ def main(argv):
         elif opt == "--playpause":              perfomSpotifyAction("PlayPause")
         elif opt == "--next":                   perfomSpotifyAction("Next")
         elif opt in ("--prev", "--previous"):   perfomSpotifyAction("Previous")
-        elif opt == "--volumeup":               controlVolume("+10%")
-        elif opt == "--volumedown":             controlVolume("-10%")
+        elif opt == "--volumeup":               controlVolume("+5%")
+        elif opt == "--volumedown":             controlVolume("-5%")
 
 
 def showHelp():
