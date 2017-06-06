@@ -43,17 +43,11 @@ def showCurrentSong():
         spotify_properties = dbus.Interface(spotify_bus, "org.freedesktop.DBus.Properties")
         metadata = spotify_properties.Get("org.mpris.MediaPlayer2.Player", "Metadata")
 
-        # The property Metadata behaves like a python dict
-        # I'm keeping this commented code for documentation purposes
-        # for key, value in metadata.items():
-        #   print key, value
-
-        # print artist name and track title
         title = metadata['xesam:title'][:10] + (metadata['xesam:title'][10:] and '...')
         artist = metadata['xesam:artist'][0][:15] + (metadata['xesam:artist'][0][15:] and '...')
         print ("%s - %s" % (artist, title))
     except:
-        # we go here when spotify is turned off
+        # we go here when spotify is turned off, not installed or we cannot access dbus
         print ("spotify is off")
 
 def perfomSpotifyAction(spotifyCommand):
