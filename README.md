@@ -55,3 +55,8 @@ sudo apt-get install python-dbus
 ```
 
 If you are using another distro, then try to install `python-dbus` with your package manager.
+
+usage with tmux
+---------------
+
+If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
