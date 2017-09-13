@@ -32,7 +32,7 @@ def show_help():
           '    --pause\t\tpauses the song\n' \
           '    --playpause\t\tplays or pauses the song (toggles a state)\n' \
           '    --next\t\tplays the next song\n' \
-          '    --prev\tplays the previous song\n' \
+          '    --prev\t\tplays the previous song\n' \
           '    --volumeup\t\tincreases sound volume\n' \
           '    --volumedown\tdecreases sound volume\n') \
 
