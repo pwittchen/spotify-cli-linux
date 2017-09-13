@@ -12,15 +12,15 @@ def main(argv):
         show_help()
         sys.exit(2)
     for opt, arg in opts:
-        if opt in ("-h", "--help"):             show_help()
-        elif opt == "--status":                 show_current_song()
-        elif opt == "--play":                   perform_spotify_action("Play")
-        elif opt == "--pause":                  perform_spotify_action("Pause")
-        elif opt == "--playpause":              perform_spotify_action("PlayPause")
-        elif opt == "--next":                   perform_spotify_action("Next")
-        elif opt in ("--prev", "--previous"):   perform_spotify_action("Previous")
-        elif opt == "--volumeup":               control_volume("+5%")
-        elif opt == "--volumedown":             control_volume("-5%")
+        if opt in ("-h", "--help"): show_help()
+        elif opt == "--status":     show_current_song()
+        elif opt == "--play":       perform_spotify_action("Play")
+        elif opt == "--pause":      perform_spotify_action("Pause")
+        elif opt == "--playpause":  perform_spotify_action("PlayPause")
+        elif opt == "--next":       perform_spotify_action("Next")
+        elif opt == "--prev":       perform_spotify_action("Previous")
+        elif opt == "--volumeup":   control_volume("+5%")
+        elif opt == "--volumedown": control_volume("-5%")
 
 
 def show_help():
@@ -32,7 +32,7 @@ def show_help():
           '    --pause\t\tpauses the song\n' \
           '    --playpause\t\tplays or pauses the song (toggles a state)\n' \
           '    --next\t\tplays the next song\n' \
-          '    --previous, --prev\tplays the previous song\n' \
+          '    --prev\tplays the previous song\n' \
           '    --volumeup\t\tincreases sound volume\n' \
           '    --volumedown\tdecreases sound volume\n') \
 

@@ -34,7 +34,7 @@ use one of the following parameters:
 --pause             pauses the song
 --playpause         plays or pauses the song (toggles a state)
 --next              plays the next song
---previous, --prev  plays the previous song
+--prev              plays the previous song
 --volumeup          increases sound volume
 --volumedown        decreases sound volume
 ```
