@@ -6,7 +6,7 @@ from subprocess import Popen, PIPE
 def main(argv):
     try:
         opts, args = getopt.getopt(argv,"h:",["help","status","play","pause",
-                                              "playpause","next","prev","previous",
+                                              "playpause","next","prev",
                                               "volumeup","volumedown"])
     except getopt.GetoptError:
         show_help()
