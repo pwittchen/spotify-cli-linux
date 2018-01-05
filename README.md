@@ -30,6 +30,7 @@ use one of the following parameters:
 ```
 --help, -h          shows help
 --status            shows status (currently played song name and artist)
+--status-short      shows status in a short way (cut currently played song name and artist)
 --play              plays the song
 --pause             pauses the song
 --playpause         plays or pauses the song (toggles a state)
