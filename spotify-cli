@@ -28,7 +28,7 @@ def show_help():
           '  usage:\n' \
           '    --help, -h\t\tshows help\n' \
           '    --status\t\tshows status (currently played song name and artist)\n' \
-          '    --status-short\tshows status in a short way (cut currently played song name and artist)\n' \
+          '    --status-short\tshows status in a short way (cuts currently played song name and artist)\n' \
           '    --play\t\tplays the song\n' \
           '    --pause\t\tpauses the song\n' \
           '    --playpause\t\tplays or pauses the song (toggles a state)\n' \
