@@ -51,21 +51,25 @@ def get_current_song():
         # we go here when spotify is turned off, not installed or we cannot access dbus
         return ("-", "-")
 
-def show_current_song():
+def is_spotify_available():
     artist, title = get_current_song()
-    if(artist == "-" and title == "-"):
-        print ("spotify is off")
-    else:
+    return not(artist == "-" and title == "-")
+
+def show_current_song():
+    if(is_spotify_available()):
+        artist, title = get_current_song()
         print ("%s - %s" % (artist, title))
+    else:
+        print ("spotify is off")
 
 def show_current_song_short():
-    artist, title = get_current_song()
-    if(artist == "-" and title == "-"):
-        print ("spotify is off")
-    else:
+    if(is_spotify_available()):
+        artist, title = get_current_song()
         artist = artist[:15] + (artist[15:] and '...')
         title  = title[:10]  + (title[10:]  and '...')
         print ("%s - %s" % (artist, title))
+    else:
+      print ("spotify is off")
 
 def perform_spotify_action(spotifyCommand):
     Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
