@@ -71,12 +71,12 @@ def show_current_song_short():
     else:
       print ("spotify is off")
 
-def perform_spotify_action(spotifyCommand):
+def perform_spotify_action(spotify_command):
     Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
-    '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' % spotifyCommand, shell=True, stdout=PIPE)
+    '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' % spotify_command, shell=True, stdout=PIPE)
 
-def control_volume(volumePercent):
-    Popen('pactl set-sink-volume 0 "%s"' % volumePercent, shell=True, stdout=PIPE)
+def control_volume(volume_percent):
+    Popen('pactl set-sink-volume 0 "%s"' % volume_percent, shell=True, stdout=PIPE)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
