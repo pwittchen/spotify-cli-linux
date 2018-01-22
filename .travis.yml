@@ -1,10 +1,5 @@
 language: python
 python:
   - "3.6"
-install:
-  - pip install pycodestyle
-  - pip install pylint
 script:
-  - pycodestyle spotify-cli
-  - pylint spotify-cli
   - echo "build executed"
