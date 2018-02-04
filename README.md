@@ -16,6 +16,13 @@ with **curl**:
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/pwittchen/spotify-cli-linux/master/install.sh)"
 ```
 
+uninstallation
+--------------
+
+```
+sudo rm /usr/local/bin/spotifycli
+```
+
 usage
 -----
 
