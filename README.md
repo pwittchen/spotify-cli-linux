@@ -22,7 +22,7 @@ usage
 run the following command from your terminal:
 
 ```
-spotify-cli
+spotifycli
 ```
 
 use one of the following parameters:
