@@ -75,8 +75,22 @@ def perform_spotify_action(spotify_command):
     Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify ' \
     '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' % spotify_command, shell=True, stdout=PIPE)
 
+def get_sink_input():
+    if is_spotify_available():
+        curInput=-1
+        proc = Popen('pactl list sink-inputs', shell=True, stdout=PIPE)
+        for line in iter(proc.stdout.readline, b''):
+            if "Sink Input" in line:
+                curInput = int(line.split("#")[1].strip())
+                continue
+            elif "Spotify" in line:
+                print(curInput)
+                return curInput
+    else:
+        print ("spotify is off")     
+
 def control_volume(volume_percent):
-    Popen('pactl set-sink-volume 0 "%s"' % volume_percent, shell=True, stdout=PIPE)
+    Popen('pactl set-sink-input-volume %d "%s"' % (get_sink_input(), volume_percent), shell=True, stdout=PIPE)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
