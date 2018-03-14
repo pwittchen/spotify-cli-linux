@@ -84,7 +84,6 @@ def get_sink_input():
                 current_input = int(line.split("#")[1].strip())
                 continue
             elif "Spotify" in line:
-                print(current_input)
                 return current_input
     else:
         print ("spotify is off")     
