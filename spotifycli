@@ -77,7 +77,7 @@ def perform_spotify_action(spotify_command):
 
 def get_sink_input():
     if is_spotify_available():
-        current_input=-1
+        current_input=None
         proc = Popen('pactl list sink-inputs', shell=True, stdout=PIPE)
         for line in iter(proc.stdout.readline, b''):
             if "Sink Input" in line:
@@ -89,7 +89,11 @@ def get_sink_input():
         print ("spotify is off")     
 
 def control_volume(volume_percent):
-    Popen('pactl set-sink-input-volume %d "%s"' % (get_sink_input(), volume_percent), shell=True, stdout=PIPE)
+    sink = get_sink_input()
+    if sink is None:
+        print ("Could not find spotify sink input")
+        return
+    Popen('pactl set-sink-input-volume %d "%s"' % (sink, volume_percent), shell=True, stdout=PIPE)
 
 if __name__ == "__main__":
     main(sys.argv[1:])
