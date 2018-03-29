@@ -68,3 +68,16 @@ usage with tmux
 ---------------
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
+
+virtualenv
+----------
+
+if you want to use the script in the virtualenv, type:
+
+```
+virtualenv .
+source bin/activate
+./spotifycli
+```
+
+script is compatible with Python 3, but it should work with Python 2.7 too
