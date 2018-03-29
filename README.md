@@ -3,8 +3,8 @@ A command-line interface to [Spotify](https://www.spotify.com/) on Linux.
 
 This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
 
-installation/update
--------------------
+installation
+------------
 
 with **wget**:
 ```
@@ -14,13 +14,6 @@ sh -c "$(wget https://raw.githubusercontent.com/pwittchen/spotify-cli-linux/mast
 with **curl**:
 ```
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/pwittchen/spotify-cli-linux/master/install.sh)"
-```
-
-uninstallation
---------------
-
-```
-sudo rm /usr/local/bin/spotifycli
 ```
 
 usage
@@ -68,16 +61,3 @@ usage with tmux
 ---------------
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
-
-virtualenv
-----------
-
-if you want to use the script in the virtualenv, type:
-
-```
-virtualenv .
-source bin/activate
-./spotifycli
-```
-
-script is compatible with Python 3, but it should work with Python 2.7 too
