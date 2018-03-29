@@ -6,6 +6,12 @@ This project is inspired by the similar project called [shpotify](https://github
 installation
 ------------
 
+with pip (recommended):
+
+```
+pip install spotify-cli-linux
+```
+
 with **wget**:
 ```
 sh -c "$(wget https://raw.githubusercontent.com/pwittchen/spotify-cli-linux/master/install.sh -O -)"
