@@ -78,8 +78,5 @@ def perform_spotify_action(spotify_command):
 def control_volume(volume_percent):
     Popen('pactl set-sink-volume 0 "%s"' % volume_percent, shell=True, stdout=PIPE)
 
-def spotifycli():
-    main(sys.argv[1:])
-
 if __name__ == "__main__":
     main(sys.argv[1:])

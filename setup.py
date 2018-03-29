@@ -9,4 +9,7 @@ setup(
     url = 'https://github.com/pwittchen/spotify-cli-linux',
     license = 'Apache 2.0',
     packages = ['spotifycli'],
+    entry_points = {
+       "console_scripts": ['spotifycli = spotifycli.spotifycli:main']
+    },
 )
