@@ -3,9 +3,9 @@
 import sys, getopt, dbus
 from subprocess import Popen, PIPE
 
-def main(argv):
+def main():
     try:
-        opts, args = getopt.getopt(argv,"h:",["help","status", "status-short","play","pause",
+        opts, args = getopt.getopt(sys.argv[1:],"h:",["help","status", "status-short","play","pause",
                                               "playpause","next","prev","volumeup","volumedown"])
     except getopt.GetoptError:
         show_help()
@@ -79,4 +79,4 @@ def control_volume(volume_percent):
     Popen('pactl set-sink-volume 0 "%s"' % volume_percent, shell=True, stdout=PIPE)
 
 if __name__ == "__main__":
-    main(sys.argv[1:])
+    main()
