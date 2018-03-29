@@ -7,6 +7,6 @@ setup(
     author = 'pwittchen',
     author_email = 'piotr.wittchen@gmail.com',
     url = 'https://github.com/pwittchen/spotify-cli-linux',
-    license = 'Apache 2.0'
-    packages = ['spotifycli']
+    license = 'Apache 2.0',
+    packages = ['spotifycli'],
 )
