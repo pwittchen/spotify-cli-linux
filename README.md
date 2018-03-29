@@ -35,6 +35,7 @@ use one of the following parameters:
 
 ```
 --help, -h          shows help
+--version, -v       shows version
 --status            shows status (currently played song name and artist)
 --status-short      shows status in a short way (cuts currently played song name and artist)
 --play              plays the song

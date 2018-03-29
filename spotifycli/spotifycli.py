@@ -5,28 +5,30 @@ from subprocess import Popen, PIPE
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:],"h:",["help","status", "status-short","play","pause",
-                                              "playpause","next","prev","volumeup","volumedown"])
+        opts, args = getopt.getopt(sys.argv[1:],"h:v",["help","status", "status-short","play","pause",
+                                              "playpause","next","prev","volumeup","volumedown", "version"])
     except getopt.GetoptError:
         show_help()
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt in ("-h", "--help"):   show_help()
-        elif opt == "--status":       show_current_song()
-        elif opt == "--status-short": show_current_song_short()
-        elif opt == "--play":         perform_spotify_action("Play")
-        elif opt == "--pause":        perform_spotify_action("Pause")
-        elif opt == "--playpause":    perform_spotify_action("PlayPause")
-        elif opt == "--next":         perform_spotify_action("Next")
-        elif opt == "--prev":         perform_spotify_action("Previous")
-        elif opt == "--volumeup":     control_volume("+5%")
-        elif opt == "--volumedown":   control_volume("-5%")
+        if opt in ("-h", "--help"):    show_help()
+        if opt in ("-v", "--version"): show_version()
+        elif opt == "--status":        show_current_song()
+        elif opt == "--status-short":  show_current_song_short()
+        elif opt == "--play":          perform_spotify_action("Play")
+        elif opt == "--pause":         perform_spotify_action("Pause")
+        elif opt == "--playpause":     perform_spotify_action("PlayPause")
+        elif opt == "--next":          perform_spotify_action("Next")
+        elif opt == "--prev":          perform_spotify_action("Previous")
+        elif opt == "--volumeup":      control_volume("+5%")
+        elif opt == "--volumedown":    control_volume("-5%")
 
 def show_help():
     print ('\n  spotify-cli is a command line interface for Spotify on Linux\n\n' \
           '  usage:\n' \
           '    --help, -h\t\tshows help\n' \
+          '    --version, -v\tshows version\n' \
           '    --status\t\tshows status (currently played song name and artist)\n' \
           '    --status-short\tshows status in a short way (cuts currently played song name and artist)\n' \
           '    --play\t\tplays the song\n' \
@@ -36,6 +38,9 @@ def show_help():
           '    --prev\t\tplays the previous song\n' \
           '    --volumeup\t\tincreases sound volume\n' \
           '    --volumedown\tdecreases sound volume\n') \
+
+def show_version():
+    print ('1.0.0')
 
 def get_current_song():
     try:
