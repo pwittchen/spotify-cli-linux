@@ -68,3 +68,25 @@ usage with tmux
 ---------------
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
+
+releasing
+---------
+
+configure your `~/.pypirc` file as follows:
+
+```
+[distutils]
+index-servers =
+    pypi
+[pypi]
+username:yourusername
+password:yourpassword
+```
+
+then use wrapper in a `Makefile`:
+
+```
+make dist
+make release
+make clean
+```
