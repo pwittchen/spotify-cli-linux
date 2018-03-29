@@ -6,7 +6,7 @@ This project is inspired by the similar project called [shpotify](https://github
 installation
 ------------
 
-with pip (recommended):
+with **pip** (recommended):
 
 ```
 pip install spotify-cli-linux
