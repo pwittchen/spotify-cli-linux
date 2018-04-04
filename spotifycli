@@ -1,6 +1,6 @@
 #!/usr/bin/python -u
 
-import sys, getopt, dbus
+import sys, getopt, dbus, re
 from subprocess import Popen, PIPE
 
 def main(argv):
@@ -79,8 +79,9 @@ def get_sink_input():
     if is_spotify_available():
         current_input=None
         proc = Popen('pactl list sink-inputs', shell=True, stdout=PIPE)
+        reg = re.compile('^\S.+\d+$')
         for line in iter(proc.stdout.readline, b''):
-            if "Sink Input" in line:
+            if re.search(reg, line):
                 current_input = int(line.split("#")[1].strip())
                 continue
             elif "Spotify" in line:
