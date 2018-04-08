@@ -83,7 +83,7 @@ username:yourusername
 password:yourpassword
 ```
 
-then use wrapper in a `Makefile`:
+then, update version in `setup.py` file and use wrapper in a `Makefile`:
 
 ```
 make dist
