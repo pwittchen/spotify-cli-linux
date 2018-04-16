@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/env python
 
 import sys, getopt, dbus
 from subprocess import Popen, PIPE
