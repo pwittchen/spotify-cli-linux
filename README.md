@@ -76,10 +76,11 @@ code formatting
 
 Source code should be formatted according to [PEP8](https://www.python.org/dev/peps/pep-0008/) style guides.
 
-Install [autopep8](https://github.com/hhatto/autopep8) as follows:
+Install [autopep8](https://github.com/hhatto/autopep8) and [pycodestyle](https://github.com/PyCQA/pycodestyle) as follows:
 
 ```
 pip install --upgrade autopep8
+pip install --upgrade pycodestyle
 ```
 
 Then run:
