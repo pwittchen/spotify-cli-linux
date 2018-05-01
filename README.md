@@ -71,6 +71,23 @@ usage with tmux
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
 
+code formatting
+---------------
+
+Source code should be formatted according to [PEP8](https://www.python.org/dev/peps/pep-0008/) style guides.
+
+Install [autopep8](https://github.com/hhatto/autopep8) as follows:
+
+```
+pip install --upgrade autopep8
+```
+
+Then run:
+
+```
+make format
+```
+
 releasing
 ---------
 
