@@ -38,8 +38,8 @@ use one of the following parameters:
 ```
 --help, -h          shows help
 --version, -v       shows version
---status            shows status (currently played song name and artist)
---status-short      shows status in a short way (cuts currently played song name and artist)
+--status            shows status (song name and artist)
+--status-short      shows status in a short way
 --play              plays the song
 --pause             pauses the song
 --playpause         plays or pauses the song (toggles a state)
@@ -86,6 +86,12 @@ Then run:
 
 ```
 make format
+```
+
+to verify code formatting, type:
+
+```
+make check_format
 ```
 
 releasing

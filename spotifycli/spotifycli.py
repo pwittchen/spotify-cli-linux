@@ -8,8 +8,13 @@ from subprocess import Popen, PIPE
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "h:v", ["help", "status", "status-short",
-                                                         "play", "pause", "playpause", "next", "prev", "volumeup", "volumedown", "version"])
+        opts, args = getopt.getopt(sys.argv[1:], "h:v", ["help", "status",
+                                                         "status-short",
+                                                         "play", "pause",
+                                                         "playpause", "next",
+                                                         "prev", "volumeup",
+                                                         "volumedown",
+                                                         "version"])
     except getopt.GetoptError:
         show_help()
         sys.exit(2)
@@ -45,8 +50,8 @@ def show_help():
         '  usage:\n'
         '    --help, -h\t\tshows help\n'
         '    --version, -v\tshows version\n'
-        '    --status\t\tshows status (currently played song name and artist)\n'
-        '    --status-short\tshows status in a short way (cuts currently played song name and artist)\n'
+        '    --status\t\tshows status (song name and artist)\n'
+        '    --status-short\tshows status in a short way\n'
         '    --play\t\tplays the song\n'
         '    --pause\t\tpauses the song\n'
         '    --playpause\t\tplays or pauses the song (toggles a state)\n'
@@ -75,8 +80,8 @@ def get_current_song():
         title = metadata['xesam:title']
         return (artist, title)
     except BaseException:
-        # we go here when spotify is turned off, not installed or we cannot
-        # access dbus
+        # we go here when spotify is turned off,
+        # not installed or we cannot access dbus
         return ("-", "-")
 
 
