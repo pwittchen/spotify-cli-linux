@@ -109,6 +109,12 @@ username:yourusername
 password:yourpassword
 ```
 
+next, install [twine](https://github.com/pypa/twine):
+
+```
+pip install twine
+```
+
 then, update version in `setup.py` file and use wrapper in a `Makefile`:
 
 ```
