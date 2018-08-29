@@ -1,4 +1,4 @@
-# spotify-cli-linux
+# spotify-cli-linux [![PyPI version](https://badge.fury.io/py/spotify-cli-linux.svg)](https://pypi.python.org/pypi/spotify-cli-linux/)
 A command-line interface to [Spotify](https://www.spotify.com/) on Linux.
 
 This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
