@@ -10,6 +10,10 @@ def main():
     try:
         opts, args = getopt.getopt(sys.argv[1:], "h:v", ["help", "status",
                                                          "status-short",
+                                                         "song", "song-short",
+                                                         "album", "artist",
+                                                         "artist-short",
+                                                         "playback-status",
                                                          "play", "pause",
                                                          "playpause", "next",
                                                          "prev", "volumeup",
@@ -25,9 +29,21 @@ def main():
         if opt in ("-v", "--version"):
             show_version()
         elif opt == "--status":
-            show_current_song()
+            show_current_status()
         elif opt == "--status-short":
+            show_current_status_short()
+        elif opt == "--song":
+            show_current_song()
+        elif opt == "--song-short":
             show_current_song_short()
+        elif opt == "--artist":
+            show_current_artist()
+        elif opt == "--artist-short":
+            show_current_artist_short()
+        elif opt == "--album":
+            show_current_album()
+        elif opt == "--playback-status":
+            show_current_playback_status()
         elif opt == "--play":
             perform_spotify_action("Play")
         elif opt == "--pause":
@@ -45,13 +61,19 @@ def main():
 
 
 def show_help():
-    print (
+    print(
         '\n  spotify-cli is a command line interface for Spotify on Linux\n\n'
         '  usage:\n'
         '    --help, -h\t\tshows help\n'
         '    --version, -v\tshows version\n'
         '    --status\t\tshows status (song name and artist)\n'
         '    --status-short\tshows status in a short way\n'
+        '    --song\t\tshows the current song name\n'
+        '    --song-short\tshows the current song name in a short way\n'
+        '    --artist\t\tshows the current artist\n'
+        '    --artist-short\tshows the current artist in a short way\n'
+        '    --album\t\tshows the current album\n'
+        '    --playback-status\tshows the current playback status (UTF-8)\n'
         '    --play\t\tplays the song\n'
         '    --pause\t\tpauses the song\n'
         '    --playpause\t\tplays or pauses the song (toggles a state)\n'
@@ -62,10 +84,10 @@ def show_help():
 
 
 def show_version():
-    print ('1.0.0')
+    print('1.0.0')
 
 
-def get_current_song():
+def get_spotify_property(p):
     try:
         session_bus = dbus.SessionBus()
         spotify_bus = session_bus.get_object(
@@ -73,39 +95,69 @@ def get_current_song():
             "/org/mpris/MediaPlayer2")
         spotify_properties = dbus.Interface(
             spotify_bus, "org.freedesktop.DBus.Properties")
-        metadata = spotify_properties.Get(
-            "org.mpris.MediaPlayer2.Player", "Metadata")
-
-        artist = metadata['xesam:artist'][0]
-        title = metadata['xesam:title']
-        return (artist, title)
+        return spotify_properties.Get("org.mpris.MediaPlayer2.Player", p)
     except BaseException:
-        # we go here when spotify is turned off,
-        # not installed or we cannot access dbus
-        return ("-", "-")
+        sys.stderr.write("Spotify is off\n")
+        sys.exit(1)
 
 
-def is_spotify_available():
+def get_current_song():
+    metadata = get_spotify_property("Metadata")
+
+    artist = metadata['xesam:artist'][0]
+    title = metadata['xesam:title']
+    return (artist, title)
+
+
+def show_current_status():
     artist, title = get_current_song()
-    return not(artist == "-" and title == "-")
+    print("%s - %s" % (artist, title))
+
+
+def show_current_status_short():
+    artist, title = get_current_song()
+    artist = artist[:15] + (artist[15:] and '...')
+    title = title[:10] + (title[10:] and '...')
+    print("%s - %s" % (artist, title))
 
 
 def show_current_song():
-    if(is_spotify_available()):
-        artist, title = get_current_song()
-        print ("%s - %s" % (artist, title))
-    else:
-        print ("spotify is off")
+    _, title = get_current_song()
+    print("%s" % title)
 
 
 def show_current_song_short():
-    if(is_spotify_available()):
-        artist, title = get_current_song()
-        artist = artist[:15] + (artist[15:] and '...')
-        title = title[:10] + (title[10:] and '...')
-        print ("%s - %s" % (artist, title))
-    else:
-        print ("spotify is off")
+    _, title = get_current_song()
+    title = title[:10] + (title[10:] and '...')
+    print("%s" % title)
+
+
+def show_current_artist():
+    artist, _ = get_current_song()
+    print("%s" % artist)
+
+
+def show_current_artist_short():
+    artist, _ = get_current_song()
+    artist = artist[:15] + (artist[15:] and '...')
+    print("%s" % artist)
+
+
+def show_current_playback_status():
+    playback_status = get_spotify_property("PlaybackStatus")
+
+    if playback_status == "Playing":
+        print("▶")
+    elif playback_status == "Paused":
+        print("▮▮")
+    elif playback_status == "Stopped":
+        print("■")
+
+
+def show_current_album():
+    metadata = get_spotify_property("Metadata")
+
+    print("%s" % metadata['xesam:album'])
 
 
 def perform_spotify_action(spotify_command):
