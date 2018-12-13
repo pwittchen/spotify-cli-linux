@@ -36,23 +36,25 @@ spotifycli
 use one of the following parameters:
 
 ```
---help              shows help
---version           shows version
---status            shows status (song name and artist)
---status-short      shows status in a short way
---song              shows the current song name
---song-short        shows the current song name in a short way
---artist            shows the current artist
---artist-short      shows the current artist in a short way
---album             shows the current album
---playback-status   shows the current playback status (UTF-8)
---play              plays the song
---pause             pauses the song
---playpause         plays or pauses the song (toggles a state)
---next              plays the next song
---prev              plays the previous song
---volumeup          increases sound volume
---volumedown        decreases sound volume
+--help                show this help message and exit
+--version             show program's version number and exit
+--status              shows status (song name and artist)
+--status-short        shows status in a short way
+--song                shows the current song
+--song-short [SONG_LEN]
+                      shows the current song in a short way (default: 10)
+--artist              shows the current artist
+--artist-short [ARTIST_LEN]
+                      shows the current artist in a short way (default: 15)
+--album               shows the current album
+--playback-status     shows the current playback status (UTF-8)
+--play                plays the song
+--pause               pauses the song
+--playpause           plays or pauses the song (toggles a state)
+--next                plays the next song
+--prev                plays the previous song
+--volumeup            increases sound volume
+--volumedown          decreases sound volume
 ```
 
 solving problems
