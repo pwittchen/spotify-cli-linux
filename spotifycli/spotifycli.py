@@ -8,7 +8,7 @@ from subprocess import Popen, PIPE
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "h:v", ["help", "status",
+        opts, args = getopt.getopt(sys.argv[1:], "hvspnud", ["help", "status",
                                                          "status-short",
                                                          "play", "pause",
                                                          "playpause", "next",
@@ -24,7 +24,7 @@ def main():
             show_help()
         if opt in ("-v", "--version"):
             show_version()
-        elif opt == "--status":
+        elif opt in ("-s", "--status"):
             show_current_song()
         elif opt == "--status-short":
             show_current_song_short()
@@ -32,15 +32,15 @@ def main():
             perform_spotify_action("Play")
         elif opt == "--pause":
             perform_spotify_action("Pause")
-        elif opt == "--playpause":
+        elif opt in ("-p", "--playpause"):
             perform_spotify_action("PlayPause")
-        elif opt == "--next":
+        elif opt in ("-n", "--next"):
             perform_spotify_action("Next")
         elif opt == "--prev":
             perform_spotify_action("Previous")
-        elif opt == "--volumeup":
+        elif opt in ("-u", "--volumeup"):
             control_volume("+5%")
-        elif opt == "--volumedown":
+        elif opt in ("-d", "--volumedown"):
             control_volume("-5%")
 
 
@@ -50,15 +50,15 @@ def show_help():
         '  usage:\n'
         '    --help, -h\t\tshows help\n'
         '    --version, -v\tshows version\n'
-        '    --status\t\tshows status (song name and artist)\n'
+        '    --status, -s\tshows status (song name and artist)\n'
         '    --status-short\tshows status in a short way\n'
         '    --play\t\tplays the song\n'
         '    --pause\t\tpauses the song\n'
-        '    --playpause\t\tplays or pauses the song (toggles a state)\n'
-        '    --next\t\tplays the next song\n'
+        '    --playpause, -p\tplays or pauses the song (toggles a state)\n'
+        '    --next, -n\t\tplays the next song\n'
         '    --prev\t\tplays the previous song\n'
-        '    --volumeup\t\tincreases sound volume\n'
-        '    --volumedown\tdecreases sound volume\n')
+        '    --volumeup, -u\tincreases sound volume\n'
+        '    --volumedown, -d\tdecreases sound volume\n')
 
 
 def show_version():
