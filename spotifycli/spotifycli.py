@@ -1,4 +1,5 @@
-#!/usr/bin/env python
+#!/usr/bin/python -u
+# -*- coding: utf-8 -*-
 
 import sys
 import getopt
@@ -147,11 +148,11 @@ def show_current_playback_status():
     playback_status = get_spotify_property("PlaybackStatus")
 
     if playback_status == "Playing":
-        print("▶")
+        print('▶')
     elif playback_status == "Paused":
-        print("▮▮")
+        print('▮▮')
     elif playback_status == "Stopped":
-        print("■")
+        print('■')
 
 
 def show_current_album():
