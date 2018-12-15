@@ -1,9 +1,9 @@
 dist:
-	python setup.py sdist
+	sudo python setup.py sdist
 upload:
 	twine upload dist/*
 release:
-	rm MANIFEST && rm -rf dist/ && python setup.py sdist && twine upload dist/*
+	rm MANIFEST && rm -rf dist/ && sudo python setup.py sdist && twine upload dist/*
 clean:
 	rm MANIFEST && rm -rf dist/
 format:
