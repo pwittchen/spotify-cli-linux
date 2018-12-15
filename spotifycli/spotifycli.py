@@ -104,7 +104,6 @@ def get_spotify_property(p):
 
 def get_current_song():
     metadata = get_spotify_property("Metadata")
-
     artist = metadata['xesam:artist'][0]
     title = metadata['xesam:title']
     return (artist, title)
@@ -157,7 +156,6 @@ def show_current_playback_status():
 
 def show_current_album():
     metadata = get_spotify_property("Metadata")
-
     print("%s" % metadata['xesam:album'])
 
 
