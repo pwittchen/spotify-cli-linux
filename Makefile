@@ -3,7 +3,7 @@ dist:
 upload:
 	twine upload dist/*
 release:
-	python setup.py sdist && twine upload dist/*
+	rm MANIFEST && rm -rf dist/ && python setup.py sdist && twine upload dist/*
 clean:
 	rm MANIFEST && rm -rf dist/
 format:
