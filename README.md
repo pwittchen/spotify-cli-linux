@@ -115,10 +115,8 @@ next, install [twine](https://github.com/pypa/twine):
 pip install twine
 ```
 
-then, update version in `setup.py` file and use wrapper in a `Makefile`:
+then, update version in `spotifycli/version.py` and type:
 
 ```
-make dist
 make release
-make clean
 ```
