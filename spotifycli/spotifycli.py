@@ -11,41 +11,100 @@ from version import __version__
 
 def main():
     args = add_arguments()
-    if   args.version        : show_version()
-    elif args.status         : show_status()
-    elif args.statusshort    : show_status_short()
-    elif args.song           : show_song()
-    elif args.songshort      : show_song_short()
-    elif args.artist         : show_artist()
-    elif args.artistshort    : show_artist_short()
-    elif args.album          : show_album()
-    elif args.playbackstatus : show_playback_status()
-    elif args.play           : perform_spotify_action("Play")
-    elif args.pause          : perform_spotify_action("Pause")
-    elif args.playpause      : perform_spotify_action("PlayPause")
-    elif args.next           : perform_spotify_action("Next")
-    elif args.prev           : perform_spotify_action("Previous")
-    elif args.volumeup       : control_volume("+5%")
-    elif args.volumedown     : control_volume("-5%")
+    if args.version:
+        show_version()
+    elif args.status:
+        show_status()
+    elif args.statusshort:
+        show_status_short()
+    elif args.song:
+        show_song()
+    elif args.songshort:
+        show_song_short()
+    elif args.artist:
+        show_artist()
+    elif args.artistshort:
+        show_artist_short()
+    elif args.album:
+        show_album()
+    elif args.playbackstatus:
+        show_playback_status()
+    elif args.play:
+        perform_spotify_action("Play")
+    elif args.pause:
+        perform_spotify_action("Pause")
+    elif args.playpause:
+        perform_spotify_action("PlayPause")
+    elif args.next:
+        perform_spotify_action("Next")
+    elif args.prev:
+        perform_spotify_action("Previous")
+    elif args.volumeup:
+        control_volume("+5%")
+    elif args.volumedown:
+        control_volume("-5%")
+
 
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--version", help="shows version number", action="store_true")
-    parser.add_argument("--status", help="shows song name and artist", action="store_true")
-    parser.add_argument("--statusshort", help="shows status in a short way", action="store_true")
-    parser.add_argument("--song", help="shows the song name", action="store_true")
-    parser.add_argument("--songshort", help="shows the song name in a short way", action="store_true")
-    parser.add_argument("--artist", help="shows artists name", action="store_true")
-    parser.add_argument("--artistshort", help="shows artist name in a short way", action="store_true")
-    parser.add_argument("--album", help="shows album name", action="store_true")
-    parser.add_argument("--playbackstatus", help="shows playback status", action="store_true")
+    parser.add_argument(
+        "--version",
+        help="shows version number",
+        action="store_true")
+    parser.add_argument(
+        "--status",
+        help="shows song name and artist",
+        action="store_true")
+    parser.add_argument(
+        "--statusshort",
+        help="shows status in a short way",
+        action="store_true")
+    parser.add_argument(
+        "--song",
+        help="shows the song name",
+        action="store_true")
+    parser.add_argument(
+        "--songshort",
+        help="shows the song name in a short way",
+        action="store_true")
+    parser.add_argument(
+        "--artist",
+        help="shows artists name",
+        action="store_true")
+    parser.add_argument(
+        "--artistshort",
+        help="shows artist name in a short way",
+        action="store_true")
+    parser.add_argument(
+        "--album",
+        help="shows album name",
+        action="store_true")
+    parser.add_argument(
+        "--playbackstatus",
+        help="shows playback status",
+        action="store_true")
     parser.add_argument("--play", help="plays the song", action="store_true")
     parser.add_argument("--pause", help="pauses the song", action="store_true")
-    parser.add_argument("--playpause", help="plays or pauses the song (toggles a state)", action="store_true")
-    parser.add_argument("--next", help="plays the next song", action="store_true")
-    parser.add_argument("--prev", help="plays the previous song", action="store_true")
-    parser.add_argument("--volumeup", help="increases sound volume", action="store_true")
-    parser.add_argument("--volumedown", help="decreases sound volume", action="store_true")
+    parser.add_argument(
+        "--playpause",
+        help="plays or pauses the song (toggles a state)",
+        action="store_true")
+    parser.add_argument(
+        "--next",
+        help="plays the next song",
+        action="store_true")
+    parser.add_argument(
+        "--prev",
+        help="plays the previous song",
+        action="store_true")
+    parser.add_argument(
+        "--volumeup",
+        help="increases sound volume",
+        action="store_true")
+    parser.add_argument(
+        "--volumedown",
+        help="decreases sound volume",
+        action="store_true")
     return parser.parse_args()
 
 
