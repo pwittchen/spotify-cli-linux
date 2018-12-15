@@ -89,23 +89,6 @@ def show_version():
     print(__version__)
 
 
-def get_spotify_property(spotify_property):
-    try:
-        session_bus = dbus.SessionBus()
-        spotify_bus = session_bus.get_object(
-            "org.mpris.MediaPlayer2.spotify",
-            "/org/mpris/MediaPlayer2")
-        spotify_properties = dbus.Interface(
-            spotify_bus,
-            "org.freedesktop.DBus.Properties")
-        return spotify_properties.Get(
-            "org.mpris.MediaPlayer2.Player",
-            spotify_property)
-    except BaseException:
-        sys.stderr.write("Spotify is off\n")
-        sys.exit(1)
-
-
 def get_current_song():
     metadata = get_spotify_property("Metadata")
     artist = metadata['xesam:artist'][0]
@@ -158,6 +141,23 @@ def show_current_playback_status():
 def show_current_album():
     metadata = get_spotify_property("Metadata")
     print("%s" % metadata['xesam:album'])
+
+
+def get_spotify_property(spotify_property):
+    try:
+        session_bus = dbus.SessionBus()
+        spotify_bus = session_bus.get_object(
+            "org.mpris.MediaPlayer2.spotify",
+            "/org/mpris/MediaPlayer2")
+        spotify_properties = dbus.Interface(
+            spotify_bus,
+            "org.freedesktop.DBus.Properties")
+        return spotify_properties.Get(
+            "org.mpris.MediaPlayer2.Player",
+            spotify_property)
+    except BaseException:
+        sys.stderr.write("Spotify is off\n")
+        sys.exit(1)
 
 
 def perform_spotify_action(spotify_command):
