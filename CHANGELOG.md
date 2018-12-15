@@ -3,7 +3,7 @@ CHANGELOG
 
 v. 1.2.0
 --------
-*15 Dev 2018*
+*15 Dec 2018*
 - replaced getopts with argparse for parsing CLI arguments
 - added auto-generation of the help for the script
 - added `-h` param
