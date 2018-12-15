@@ -96,7 +96,8 @@ def get_spotify_property(p):
             "org.mpris.MediaPlayer2.spotify",
             "/org/mpris/MediaPlayer2")
         spotify_properties = dbus.Interface(
-            spotify_bus, "org.freedesktop.DBus.Properties")
+            spotify_bus,
+            "org.freedesktop.DBus.Properties")
         return spotify_properties.Get("org.mpris.MediaPlayer2.Player", p)
     except BaseException:
         sys.stderr.write("Spotify is off\n")
