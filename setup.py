@@ -1,8 +1,9 @@
 from distutils.core import setup
+from spotifycli.version import __version__
 
 setup(
     name = 'spotify-cli-linux',
-    version = '1.0.0',
+    version = __version__,
     description = 'A command-line interface to Spotify on Linux',
     author = 'pwittchen',
     author_email = 'piotr.wittchen@gmail.com',

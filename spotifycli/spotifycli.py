@@ -5,6 +5,7 @@ import sys
 import getopt
 import dbus
 from subprocess import Popen, PIPE
+from version import __version__
 
 
 def main():
@@ -85,7 +86,7 @@ def show_help():
 
 
 def show_version():
-    print('1.0.0')
+    print(__version__)
 
 
 def get_spotify_property(p):
