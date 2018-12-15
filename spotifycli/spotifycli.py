@@ -13,14 +13,14 @@ def main():
         opts, args = getopt.getopt(sys.argv[1:], "", ["help", "status",
                                                       "status-short",
                                                       "song", "song-short",
-                                                       "album", "artist",
-                                                       "artist-short",
-                                                       "playback-status",
-                                                       "play", "pause",
-                                                       "playpause", "next",
-                                                       "prev", "volumeup",
-                                                       "volumedown",
-                                                       "version"])
+                                                      "album", "artist",
+                                                      "artist-short",
+                                                      "playback-status",
+                                                      "play", "pause",
+                                                      "playpause", "next",
+                                                      "prev", "volumeup",
+                                                      "volumedown",
+                                                      "version"])
     except getopt.GetoptError:
         show_help()
         sys.exit(2)
