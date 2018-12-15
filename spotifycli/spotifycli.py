@@ -83,8 +83,14 @@ def add_arguments():
         "--playbackstatus",
         help="shows playback status",
         action="store_true")
-    parser.add_argument("--play", help="plays the song", action="store_true")
-    parser.add_argument("--pause", help="pauses the song", action="store_true")
+    parser.add_argument(
+        "--play",
+        help="plays the song",
+        action="store_true")
+    parser.add_argument(
+        "--pause",
+        help="pauses the song",
+        action="store_true")
     parser.add_argument(
         "--playpause",
         help="plays or pauses the song (toggles a state)",
