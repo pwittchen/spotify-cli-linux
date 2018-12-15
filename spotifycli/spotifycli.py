@@ -89,7 +89,7 @@ def show_version():
     print(__version__)
 
 
-def get_spotify_property(p):
+def get_spotify_property(spotify_property):
     try:
         session_bus = dbus.SessionBus()
         spotify_bus = session_bus.get_object(
@@ -98,7 +98,9 @@ def get_spotify_property(p):
         spotify_properties = dbus.Interface(
             spotify_bus,
             "org.freedesktop.DBus.Properties")
-        return spotify_properties.Get("org.mpris.MediaPlayer2.Player", p)
+        return spotify_properties.Get(
+            "org.mpris.MediaPlayer2.Player",
+            spotify_property)
     except BaseException:
         sys.stderr.write("Spotify is off\n")
         sys.exit(1)
