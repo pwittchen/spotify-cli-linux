@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.1.1
+--------
+*15 Dec 2018*
+- updated license to GPL 3.0
+
+
 v. 1.1.0
 --------
 *15 Dec 2018*
