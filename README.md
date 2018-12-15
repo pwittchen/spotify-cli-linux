@@ -40,6 +40,12 @@ use one of the following parameters:
 --version, -v       shows version
 --status            shows status (song name and artist)
 --status-short      shows status in a short way
+--song              shows the current song name
+--song-short        shows the current song name in a short way
+--artist            shows the current artist
+--artist-short      shows the current artist in a short way
+--album             shows the current album
+--playback-status   shows the current playback status (UTF-8)
 --play              plays the song
 --pause             pauses the song
 --playpause         plays or pauses the song (toggles a state)
