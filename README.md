@@ -14,6 +14,12 @@ with **pip** (recommended):
 pip install spotify-cli-linux
 ```
 
+to upgrade to the latest version, type:
+
+```
+pip install spotify-cli-linux --upgrade
+```
+
 with **wget**:
 ```
 sh -c "$(wget https://raw.githubusercontent.com/pwittchen/spotify-cli-linux/master/install.sh -O -)"
