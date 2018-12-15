@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.2.1
+--------
+*16 Dec 2018*
+- updated project description
+- updated release configuration
+
 v. 1.2.0
 --------
 *15 Dec 2018*
