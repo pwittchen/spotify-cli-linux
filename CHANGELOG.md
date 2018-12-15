@@ -1,6 +1,18 @@
 CHANGELOG
 =========
 
+v. 1.2.0
+--------
+*15 Dev 2018*
+- replaced getopts with argparse for parsing CLI arguments
+- added auto-generation of the help for the script
+- added `-h` param
+- renamed param `--status-short` to `--statusshort`
+- renamed param `--song-short` to `--songshort`
+- renamed param `--artist-short` to `--artistshort`
+- renamed param `--playback-status` to `--playbackstatus`
+- slightly reformatted the code
+
 v. 1.1.1
 --------
 *15 Dec 2018*
