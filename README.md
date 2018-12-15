@@ -36,8 +36,8 @@ spotifycli
 use one of the following parameters:
 
 ```
---help, -h          shows help
---version, -v       shows version
+--help              shows help
+--version           shows version
 --status            shows status (song name and artist)
 --status-short      shows status in a short way
 --song              shows the current song name

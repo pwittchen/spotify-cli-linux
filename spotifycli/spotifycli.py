@@ -10,25 +10,25 @@ from version import __version__
 
 def main():
     try:
-        opts, args = getopt.getopt(sys.argv[1:], "h:v", ["help", "status",
-                                                         "status-short",
-                                                         "song", "song-short",
-                                                         "album", "artist",
-                                                         "artist-short",
-                                                         "playback-status",
-                                                         "play", "pause",
-                                                         "playpause", "next",
-                                                         "prev", "volumeup",
-                                                         "volumedown",
-                                                         "version"])
+        opts, args = getopt.getopt(sys.argv[1:], "", ["help", "status",
+                                                      "status-short",
+                                                      "song", "song-short",
+                                                       "album", "artist",
+                                                       "artist-short",
+                                                       "playback-status",
+                                                       "play", "pause",
+                                                       "playpause", "next",
+                                                       "prev", "volumeup",
+                                                       "volumedown",
+                                                       "version"])
     except getopt.GetoptError:
         show_help()
         sys.exit(2)
 
     for opt, arg in opts:
-        if opt in ("-h", "--help"):
+        if opt in ("--help"):
             show_help()
-        if opt in ("-v", "--version"):
+        if opt in ("--version"):
             show_version()
         elif opt == "--status":
             show_current_status()
@@ -66,8 +66,8 @@ def show_help():
     print(
         '\n  spotify-cli is a command line interface for Spotify on Linux\n\n'
         '  usage:\n'
-        '    --help, -h\t\tshows help\n'
-        '    --version, -v\tshows version\n'
+        '    --help\t\tshows help\n'
+        '    --version\t\tshows version\n'
         '    --status\t\tshows status (song name and artist)\n'
         '    --status-short\tshows status in a short way\n'
         '    --song\t\tshows the current song name\n'
