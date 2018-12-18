@@ -47,71 +47,30 @@ def main():
 
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument(
-        "--version",
-        help="shows version number",
-        action="store_true")
-    parser.add_argument(
-        "--status",
-        help="shows song name and artist",
-        action="store_true")
-    parser.add_argument(
-        "--statusshort",
-        help="shows status in a short way",
-        action="store_true")
-    parser.add_argument(
-        "--song",
-        help="shows the song name",
-        action="store_true")
-    parser.add_argument(
-        "--songshort",
-        help="shows the song name in a short way",
-        action="store_true")
-    parser.add_argument(
-        "--artist",
-        help="shows artists name",
-        action="store_true")
-    parser.add_argument(
-        "--artistshort",
-        help="shows artist name in a short way",
-        action="store_true")
-    parser.add_argument(
-        "--album",
-        help="shows album name",
-        action="store_true")
-    parser.add_argument(
-        "--playbackstatus",
-        help="shows playback status",
-        action="store_true")
-    parser.add_argument(
-        "--play",
-        help="plays the song",
-        action="store_true")
-    parser.add_argument(
-        "--pause",
-        help="pauses the song",
-        action="store_true")
-    parser.add_argument(
-        "--playpause",
-        help="plays or pauses the song (toggles a state)",
-        action="store_true")
-    parser.add_argument(
-        "--next",
-        help="plays the next song",
-        action="store_true")
-    parser.add_argument(
-        "--prev",
-        help="plays the previous song",
-        action="store_true")
-    parser.add_argument(
-        "--volumeup",
-        help="increases sound volume",
-        action="store_true")
-    parser.add_argument(
-        "--volumedown",
-        help="decreases sound volume",
-        action="store_true")
+    for argument, help_message in sorted(get_arguments().items()):
+        parser.add_argument(argument, help=help_message, action="store_true")
     return parser.parse_args()
+
+
+def get_arguments():
+    return {
+        "--version": "shows version number",
+        "--status": "shows song name and artist",
+        "--statusshort": "shows status in a short way",
+        "--song": "shows the song name",
+        "--songshort": "shows the song name in a short way",
+        "--artist": "shows artist name",
+        "--artistshort": "shows artist name in a short way",
+        "--album": "shows album name",
+        "--playbackstatus": "shows playback status",
+        "--play": "plays the song",
+        "--pause": "pauses the song",
+        "--playpause": "plays or pauses the song (toggles a state)",
+        "--next": "plays the next song",
+        "--prev": "plays the previous song",
+        "--volumeup": "increases the sound volume",
+        "--volumedown": "decreases the sound volume"
+    }
 
 
 def show_version():
