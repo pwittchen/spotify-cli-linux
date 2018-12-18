@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.2.2
+--------
+*18 Dec 2018*
+- refactored code: extracted script arguments into dictionary
+
 v. 1.2.1
 --------
 *16 Dec 2018*
