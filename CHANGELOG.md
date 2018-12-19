@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.2.3
+--------
+*19 Dec 2019*
+- replacing dictionary with arguments with the list of tuples because it seems to be a better structure for this purpose
+
 v. 1.2.2
 --------
 *18 Dec 2018*
