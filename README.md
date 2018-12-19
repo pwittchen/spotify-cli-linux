@@ -95,6 +95,23 @@ to verify code formatting, type:
 make check_format
 ```
 
+docs
+----
+
+to update docs on `gh-pages`, type:
+
+```
+make docs
+```
+
+to run docs locally, type:
+```
+git checkout gh-pages
+./serve.sh
+```
+
+and view page with docs at: 0.0.0.0:8000
+
 releasing
 ---------
 
