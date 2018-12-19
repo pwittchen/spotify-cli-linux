@@ -47,30 +47,30 @@ def main():
 
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
-    for argument, help_message in sorted(get_arguments().items()):
-        parser.add_argument(argument, help=help_message, action="store_true")
+    for argument in get_arguments():
+        parser.add_argument(argument[0], help=argument[1], action="store_true")
     return parser.parse_args()
 
 
 def get_arguments():
-    return {
-        "--version": "shows version number",
-        "--status": "shows song name and artist",
-        "--statusshort": "shows status in a short way",
-        "--song": "shows the song name",
-        "--songshort": "shows the song name in a short way",
-        "--artist": "shows artist name",
-        "--artistshort": "shows artist name in a short way",
-        "--album": "shows album name",
-        "--playbackstatus": "shows playback status",
-        "--play": "plays the song",
-        "--pause": "pauses the song",
-        "--playpause": "plays or pauses the song (toggles a state)",
-        "--next": "plays the next song",
-        "--prev": "plays the previous song",
-        "--volumeup": "increases the sound volume",
-        "--volumedown": "decreases the sound volume"
-    }
+    return [
+        ("--version", "shows version number"),
+        ("--status", "shows song name and artist"),
+        ("--statusshort", "shows status in a short way"),
+        ("--song", "shows the song name"),
+        ("--songshort", "shows the song name in a short way"),
+        ("--artist", "shows artist name"),
+        ("--artistshort", "shows artist name in a short way"),
+        ("--album", "shows album name"),
+        ("--playbackstatus", "shows playback status"),
+        ("--play", "plays the song"),
+        ("--pause", "pauses the song"),
+        ("--playpause", "plays or pauses the song (toggles a state)"),
+        ("--next", "plays the next song"),
+        ("--prev", "plays the previous song"),
+        ("--volumeup", "increases the sound volume"),
+        ("--volumedown", "decreases the sound volume")
+    ]
 
 
 def show_version():
