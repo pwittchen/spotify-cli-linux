@@ -7,7 +7,7 @@ import argparse
 import dbus
 from subprocess import Popen, PIPE
 
-if sys.version_info > (3,6):
+if sys.version_info > (3, 6):
     from .version import __version__
 else:
     from version import __version__
