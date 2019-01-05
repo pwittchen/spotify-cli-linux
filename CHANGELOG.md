@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.2.5
+--------
+*05 Jan 2019*
+- updating setup.py (adding long_description) and simplifying release task in Makefile 
+
 v. 1.2.4
 --------
 *05 Jan 2019*
