@@ -5,7 +5,7 @@ upload:
 release:
 	sudo rm MANIFEST || true && sudo rm -rf dist/ || true && sudo python setup.py sdist && twine upload dist/*
 clean:
-	sudo rm MANIFEST && sudo rm -rf dist/
+	sudo rm MANIFEST || true && sudo rm -rf dist/ || true
 format:
 	autopep8 --in-place --aggressive spotifycli/spotifycli.py
 check_format:
