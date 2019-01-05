@@ -1,9 +1,14 @@
 CHANGELOG
 =========
 
+v. 1.2.4
+--------
+*05 Jan 2019*
+- Fixing version import for Python 3.7 and higher and keeping backward-compatibility with older Python versions - fixes #32
+
 v. 1.2.3
 --------
-*19 Dec 2019*
+*19 Dec 2018*
 - replacing dictionary with arguments with the list of tuples because it seems to be a better structure for this purpose
 
 v. 1.2.2
