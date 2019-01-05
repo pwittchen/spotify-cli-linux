@@ -1,3 +1,4 @@
 *.pyc
 MANIFEST
 dist/
+spofify_cli_linux.egg-info/
