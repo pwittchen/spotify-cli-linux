@@ -6,7 +6,11 @@ import sys
 import argparse
 import dbus
 from subprocess import Popen, PIPE
-from version import __version__
+
+if sys.version_info > (3,6):
+    from .version import __version__
+else:
+    from version import __version__
 
 
 def main():
