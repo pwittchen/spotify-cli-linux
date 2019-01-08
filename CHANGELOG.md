@@ -1,10 +1,15 @@
 CHANGELOG
 =========
 
+v. 1.2.6
+--------
+*09 Jan 2019*
+- adding classifiers to `setup.py`
+
 v. 1.2.5
 --------
 *05 Jan 2019*
-- updating setup.py (adding long_description) and simplifying release task in Makefile 
+- updating setup.py (adding `long_description`) and simplifying release task in Makefile 
 
 v. 1.2.4
 --------
