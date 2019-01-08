@@ -1,5 +1,7 @@
 language: python
 python:
   - "3.6"
+install:
+  pip install pycodestyle
 script:
-  - echo "build executed"
+  pycodestyle --show-source --show-pep8 --format=default spotifycli/spotifycli.py
