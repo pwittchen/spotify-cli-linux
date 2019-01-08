@@ -96,7 +96,7 @@ make format
 to verify code formatting, type:
 
 ```
-make check_format
+make check
 ```
 
 docs
