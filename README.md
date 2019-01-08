@@ -1,4 +1,4 @@
-# spotify-cli-linux
+# spotify-cli-linux [![Build Status](https://travis-ci.org/pwittchen/spotify-cli-linux.svg?branch=master)](https://travis-ci.org/pwittchen/spotify-cli-linux)
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
 This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
