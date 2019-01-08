@@ -1,0 +1,164 @@
+Metadata-Version: 2.1
+Name: spotify-cli-linux
+Version: 1.2.6
+Summary: a command line interface to Spotify on Linux
+Home-page: https://github.com/pwittchen/spotify-cli-linux
+Author: Piotr Wittchen
+Author-email: piotr.wittchen@gmail.com
+License: GPL 3.0
+Description: # spotify-cli-linux
+        
+        [![Build Status](https://travis-ci.org/pwittchen/spotify-cli-linux.svg?branch=master)](https://travis-ci.org/pwittchen/spotify-cli-linux) [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg)](https://pypi.python.org/pypi/spotify-cli-linux/)
+        
+        A command line interface to [Spotify](https://www.spotify.com/) on Linux.
+        
+        This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
+        
+        View this project on PyPi at https://pypi.org/project/spotify-cli-linux/.
+        
+        installation
+        ------------
+        
+        ```
+        pip install spotify-cli-linux
+        ```
+        
+        upgrade
+        -------
+        
+        ```
+        pip install spotify-cli-linux --upgrade
+        ```
+        
+        usage
+        -----
+        
+        run the following command from your terminal:
+        
+        ```
+        spotifycli
+        ```
+        
+        use one of the following parameters:
+        
+        ```
+        -h, --help        show this help message and exit
+        --version         shows version number
+        --status          shows song name and artist
+        --statusshort     shows status in a short way
+        --song            shows the song name
+        --songshort       shows the song name in a short way
+        --artist          shows artists name
+        --artistshort     shows artist name in a short way
+        --album           shows album name
+        --playbackstatus  shows playback status
+        --play            plays the song
+        --pause           pauses the song
+        --playpause       plays or pauses the song (toggles a state)
+        --next            plays the next song
+        --prev            plays the previous song
+        --volumeup        increases sound volume
+        --volumedown      decreases sound volume
+        ```
+        
+        solving problems
+        ----------------
+        
+        When you've seen the following error:
+        
+        ```
+        No module named dbus
+        ```
+        
+        Then try to install `python-dbus`! On Ubuntu you can do it as follows:
+        
+        ```
+        sudo apt-get install python-dbus
+        ```
+        
+        If you are using another distro, then try to install `python-dbus` with your package manager.
+        
+        usage with tmux
+        ---------------
+        
+        If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
+        
+        code formatting
+        ---------------
+        
+        Source code should be formatted according to [PEP8](https://www.python.org/dev/peps/pep-0008/) style guides.
+        
+        Install [autopep8](https://github.com/hhatto/autopep8) and [pycodestyle](https://github.com/PyCQA/pycodestyle) as follows:
+        
+        ```
+        pip install --upgrade autopep8
+        pip install --upgrade pycodestyle
+        ```
+        
+        Then run:
+        
+        ```
+        make format
+        ```
+        
+        to verify code formatting, type:
+        
+        ```
+        make check
+        ```
+        
+        docs
+        ----
+        
+        to update docs on `gh-pages`, type:
+        
+        ```
+        make docs
+        ```
+        
+        to run docs locally, type:
+        ```
+        git checkout gh-pages
+        ./serve.sh
+        ```
+        
+        and view page with docs at: 0.0.0.0:8000
+        
+        releasing
+        ---------
+        
+        configure your `~/.pypirc` file as follows:
+        
+        ```
+        [distutils]
+        index-servers =
+            pypi
+        [pypi]
+        username:yourusername
+        password:yourpassword
+        ```
+        
+        next, install [twine](https://github.com/pypa/twine):
+        
+        ```
+        pip install twine
+        ```
+        
+        then, update version in `spotifycli/version.py` and type:
+        
+        ```
+        make release
+        ```
+        
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: End Users/Desktop
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3.6
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Topic :: Multimedia :: Sound/Audio
+Requires-Python: >=2.7
+Description-Content-Type: text/markdown
