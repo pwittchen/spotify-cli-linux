@@ -8,6 +8,6 @@ clean:
 format:
 	autopep8 --in-place --aggressive spotifycli/spotifycli.py
 check_format:
-	pycodestyle spotifycli/spotifycli.py
+	pycodestyle --show-source --show-pep8 spotifycli/spotifycli.py
 docs:
 	./update_docs.sh
