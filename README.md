@@ -25,6 +25,8 @@ pip install spotify-cli-linux --upgrade
 usage
 -----
 
+start the official Spotify desktop app
+
 run the following command from your terminal:
 
 ```
