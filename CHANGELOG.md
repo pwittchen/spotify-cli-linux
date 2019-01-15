@@ -2,6 +2,7 @@ CHANGELOG
 =========
 
 v. 1.2.7
+--------
 *15 Jan 2019*
 - updating docs
 
