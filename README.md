@@ -12,14 +12,14 @@ installation
 ------------
 
 ```
-pip install spotify-cli-linux
+sudo pip install spotify-cli-linux
 ```
 
 upgrade
 -------
 
 ```
-pip install spotify-cli-linux --upgrade
+sudo pip install spotify-cli-linux --upgrade
 ```
 
 usage
@@ -71,12 +71,6 @@ sudo apt-get install python-dbus
 ```
 
 If you are using another distro, then try to install `python-dbus` with your package manager.
-
-If you encounter problems during installation, then install package with `sudo`:
-
-```
-sudo pip install spotify-cli-linux
-```
 
 usage with tmux
 ---------------
