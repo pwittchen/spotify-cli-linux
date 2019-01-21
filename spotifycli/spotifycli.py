@@ -3,6 +3,7 @@
 """a command line interface to Spotify on Linux"""
 
 import sys
+import os
 import argparse
 import dbus
 from subprocess import Popen, PIPE
@@ -14,6 +15,10 @@ else:
 
 
 def main():
+    if len(sys.argv) == 1:
+        start_shell()
+        return 0
+
     args = add_arguments()
     if args.version:
         show_version()
@@ -47,6 +52,25 @@ def main():
         control_volume("+5%")
     elif args.volumedown:
         control_volume("-5%")
+
+
+def start_shell():
+    while(True):
+        try:
+            command = raw_input('spotify > ')
+        except EOFError as exception:
+            print("Have a nice day!")
+            exit(0)
+
+        pid = os.fork()
+
+        if pid == 0:  # if executing context is child process
+            os.execlp('spotifycli', 'spotifycli', '--{}'.format(command))
+        elif pid > 0:
+            os.waitpid(pid, 0)  # wait for child to exit
+        else:
+            print("Error during call to fork()")
+            exit(1)
 
 
 def add_arguments():
