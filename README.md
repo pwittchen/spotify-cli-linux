@@ -55,6 +55,8 @@ use one of the following parameters:
 --volumedown      decreases sound volume
 ```
 
+if you don't use any parameters, you'll enter the shell mode, when you'll be able to use all commands above
+
 solving problems
 ----------------
 
