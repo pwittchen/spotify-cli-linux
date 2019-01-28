@@ -82,7 +82,7 @@ If you want to use this script in your tmux panel, you can check [tmux-plugin-sp
 development
 -----------
 
-to install necessary tools for code formatting and static code analysis run:
+to install necessary tools for code formatting, static code analysis and releasing, run:
 
 ```
 make requirements
@@ -143,12 +143,6 @@ index-servers =
 [pypi]
 username:yourusername
 password:yourpassword
-```
-
-next, install [twine](https://github.com/pypa/twine):
-
-```
-pip install twine
 ```
 
 then, update version in `spotifycli/version.py` and type:
