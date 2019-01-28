@@ -100,7 +100,7 @@ make format
 to verify code formatting, type:
 
 ```
-make check
+make checkformat
 ```
 
 static code analysis

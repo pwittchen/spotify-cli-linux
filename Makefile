@@ -11,7 +11,7 @@ format:
 	autopep8 --in-place --aggressive spotifycli/__main__.py
 	autopep8 --in-place --aggressive spotifycli/__init__.py
 	autopep8 --in-place --aggressive setup.py
-check:
+checkformat:
 	pycodestyle --show-source --show-pep8 --format=default spotifycli/spotifycli.py	
 	pycodestyle --show-source --show-pep8 --format=default spotifycli/version.py
 	pycodestyle --show-source --show-pep8 --format=default spotifycli/__main__.py
