@@ -17,5 +17,7 @@ check:
 	pycodestyle --show-source --show-pep8 --format=default spotifycli/__main__.py
 	pycodestyle --show-source --show-pep8 --format=default spotifycli/__init__.py
 	pycodestyle --show-source --show-pep8 --format=default setup.py
+lint:
+	pylint spotifycli/spotifycli.py spotifycli/version.py spotifycli/__main__.py spotifycli/__init__.py setup.py
 docs:
 	./update_docs.sh

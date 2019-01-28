@@ -103,6 +103,21 @@ to verify code formatting, type:
 make check
 ```
 
+static code analysis
+--------------------
+
+Install [pylint](http://pylint.pycqa.org/en/latest/):
+
+```
+pip install pylint
+```
+
+Then run:
+
+```
+make lint
+```
+
 docs
 ----
 
