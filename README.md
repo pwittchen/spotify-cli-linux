@@ -79,19 +79,21 @@ usage with tmux
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
 
+development
+-----------
+
+to install necessary tools for code formatting and static code analysis run:
+
+```
+make requirements
+```
+
 code formatting
 ---------------
 
 Source code should be formatted according to [PEP8](https://www.python.org/dev/peps/pep-0008/) style guides.
 
-Install [autopep8](https://github.com/hhatto/autopep8) and [pycodestyle](https://github.com/PyCQA/pycodestyle) as follows:
-
-```
-pip install --upgrade autopep8
-pip install --upgrade pycodestyle
-```
-
-Then run:
+To format code, run:
 
 ```
 make format
@@ -106,13 +108,7 @@ make checkformat
 static code analysis
 --------------------
 
-Install [pylint](http://pylint.pycqa.org/en/latest/):
-
-```
-pip install pylint
-```
-
-Then run:
+To run static code analysis, execute:
 
 ```
 make lint

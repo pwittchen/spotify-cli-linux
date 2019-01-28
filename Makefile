@@ -5,6 +5,8 @@ upload:
 release: clean dist upload
 clean:
 	sudo rm MANIFEST || true && sudo rm -rf dist/ || true && sudo rm -rf spotify_cli_linux.egg-info || true
+requirements:
+	pip install -r dev-requirements.txt --upgrade
 format:
 	autopep8 --in-place --aggressive spotifycli/spotifycli.py	
 	autopep8 --in-place --aggressive spotifycli/version.py
