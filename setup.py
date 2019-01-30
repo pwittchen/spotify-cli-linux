@@ -15,6 +15,7 @@ setup(
     url='https://github.com/pwittchen/spotify-cli-linux',
     license='GPL 3.0',
     packages=['spotifycli'],
+    install_requires=['lyricwikia'],
     entry_points={
         "console_scripts": ['spotifycli = spotifycli.spotifycli:main']
     },
