@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.4.0
+--------
+*02 Feb 2019*
+- added dependency to `lyricwikia`
+- added `--lyrics` option
+
 v. 1.3.0
 --------
 *22 Jan 2019*
