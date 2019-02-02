@@ -45,6 +45,7 @@ use one of the following parameters:
 --artist          shows artists name
 --artistshort     shows artist name in a short way
 --album           shows album name
+--lyrics          shows lyrics for the song playing
 --playbackstatus  shows playback status
 --play            plays the song
 --pause           pauses the song
