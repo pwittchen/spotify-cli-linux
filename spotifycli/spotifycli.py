@@ -6,6 +6,7 @@ import sys
 import os
 import argparse
 import dbus
+import lyricwikia
 from subprocess import Popen, PIPE
 
 if sys.version_info > (3, 6):
@@ -38,6 +39,8 @@ def main():
         show_album()
     elif args.playbackstatus:
         show_playback_status()
+    elif args.lyrics:
+        show_lyrics()
     elif args.play:
         perform_spotify_action("Play")
     elif args.pause:
@@ -94,6 +97,7 @@ def get_arguments():
         ("--play", "plays the song"),
         ("--pause", "pauses the song"),
         ("--playpause", "plays or pauses the song (toggles a state)"),
+        ("--lyrics", "shows the lyrics for the song"),
         ("--next", "plays the next song"),
         ("--prev", "plays the previous song"),
         ("--volumeup", "increases the sound volume"),
@@ -133,6 +137,16 @@ def show_song_short():
     _, title = get_song()
     title = title[:10] + (title[10:] and '...')
     print("%s" % title)
+
+
+def show_lyrics():
+    try:
+        artist, title = get_song()
+        lyrics = lyricwikia.get_all_lyrics(artist, title)
+        lyrics = ''.join(lyrics[0]).encode('utf-8')
+        print(lyrics)
+    except BaseException:
+        print('lyrics not found')
 
 
 def show_artist():
