@@ -140,11 +140,13 @@ def show_song_short():
 
 
 def show_lyrics():
-    artist, title = get_song()
-    lyrics = lyricwikia.get_all_lyrics(artist, title)
-    lyrics = ''.join(lyrics[0]).encode('utf-8')
-    print("\n")
-    print(lyrics)
+    try:
+        artist, title = get_song()
+        lyrics = lyricwikia.get_all_lyrics(artist, title)
+        lyrics = ''.join(lyrics[0]).encode('utf-8')
+        print(lyrics)
+    except BaseException:
+        print('lyrics not found')
 
 
 def show_artist():
