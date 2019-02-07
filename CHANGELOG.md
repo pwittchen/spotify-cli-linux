@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.4.1
+--------
+*07 Feb 2019*
+- handling input in a different way in shell mode depending on Python version
+
 v. 1.4.0
 --------
 *02 Feb 2019*
