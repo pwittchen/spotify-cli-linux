@@ -15,11 +15,23 @@ installation
 sudo pip install spotify-cli-linux
 ```
 
+or
+
+```
+sudo python3 -m pip install spotify-cli-linux
+```
+
 upgrade
 -------
 
 ```
 sudo pip install spotify-cli-linux --upgrade
+```
+
+or
+
+```
+sudo python3 -m pip install spotify-cli-linux --upgrade
 ```
 
 usage
