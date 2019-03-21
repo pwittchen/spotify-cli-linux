@@ -1,9 +1,9 @@
+clean:
+	sudo rm MANIFEST || true && sudo rm -rf dist/ || true && sudo rm -rf spotify_cli_linux.egg-info || true
 dist:
 	sudo python setup.py sdist
 upload:
 	twine upload dist/*
-clean:
-	sudo rm MANIFEST || true && sudo rm -rf dist/ || true && sudo rm -rf spotify_cli_linux.egg-info || true
 release: clean dist upload
 requirements:
 	pip install -r dev-requirements.txt --upgrade
