@@ -200,8 +200,8 @@ def perform_spotify_action(spotify_command):
 
 
 def get_sink_number():
-    out = check_output(['pactl', 'list', 'sink-inputs'])
-    for sink in out.split('Sink Input #'):
+    out = check_output(['pacmd', 'list-sink-inputs'])
+    for sink in out.split('index: '):
         if 'spotify' in sink:
             sink_number = sink.split('\n')[0]
             break
