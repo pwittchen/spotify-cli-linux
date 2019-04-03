@@ -7,7 +7,7 @@ import os
 import argparse
 import dbus
 import lyricwikia
-from subprocess import Popen, PIPE
+from subprocess import Popen, PIPE, check_output
 
 if sys.version_info > (3, 6):
     from .version import __version__
@@ -199,10 +199,26 @@ def perform_spotify_action(spotify_command):
           spotify_command, shell=True, stdout=PIPE)
 
 
+def get_sink_number():
+    out = check_output(['pactl', 'list', 'sink-inputs'])
+    for sink in out.split('Sink Input #'):
+        if 'spotify' in sink:
+            sink_number = sink.split('\n')[0]
+            break
+    else:
+        sink_number = None
+
+    return sink_number
+
+
 def control_volume(volume_percent):
+    num = get_sink_number()
+    if not num:
+        print('No running Spotify instance found')
+        return
+
     Popen(
-        'pactl set-sink-volume 0 "%s"' %
-        volume_percent,
+        'pactl set-sink-input-volume {0} {1}'.format(num, volume_percent),
         shell=True,
         stdout=PIPE)
 
