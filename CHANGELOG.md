@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.4.2
+--------
+*04 Apr 2019*
+- fixed volume control (now script controls app volume instead of system volume) - issue #10, PR #40
+
 v. 1.4.1
 --------
 *07 Feb 2019*
