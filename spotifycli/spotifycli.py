@@ -199,18 +199,6 @@ def perform_spotify_action(spotify_command):
           spotify_command, shell=True, stdout=PIPE)
 
 
-def get_sink_number():
-    out = check_output(['pacmd', 'list-sink-inputs'])
-    for sink in out.split('index: '):
-        if 'spotify' in sink:
-            sink_number = sink.split('\n')[0]
-            break
-    else:
-        sink_number = None
-
-    return sink_number
-
-
 def control_volume(volume_percent):
     num = get_sink_number()
     if not num:
@@ -221,6 +209,18 @@ def control_volume(volume_percent):
         'pactl set-sink-input-volume {0} {1}'.format(num, volume_percent),
         shell=True,
         stdout=PIPE)
+
+
+def get_sink_number():
+    out = check_output(['pacmd', 'list-sink-inputs'])
+    for sink in out.split('index: '):
+        if 'spotify' in sink:
+            sink_number = sink.split('\n')[0]
+            break
+    else:
+        sink_number = None
+
+    return sink_number
 
 
 if __name__ == "__main__":
