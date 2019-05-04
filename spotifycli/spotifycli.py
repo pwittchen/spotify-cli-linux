@@ -19,8 +19,10 @@ def main():
     if len(sys.argv) == 1:
         start_shell()
         return 0
-
+    
+    global client
     args = add_arguments()
+    client = args.client
     if args.version:
         show_version()
     elif args.status:
@@ -85,6 +87,8 @@ def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
         parser.add_argument(argument[0], help=argument[1], action="store_true")
+    parser.add_argument("--client", action="store", dest="client",
+                        help="sets client's dbus name", default="spotify")
     return parser.parse_args()
 
 
@@ -186,7 +190,7 @@ def get_spotify_property(spotify_property):
     try:
         session_bus = dbus.SessionBus()
         spotify_bus = session_bus.get_object(
-            "org.mpris.MediaPlayer2.spotify",
+            "org.mpris.MediaPlayer2.%s" % client,
             "/org/mpris/MediaPlayer2")
         spotify_properties = dbus.Interface(
             spotify_bus,
@@ -200,9 +204,9 @@ def get_spotify_property(spotify_property):
 
 
 def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
+    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" '
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
-          spotify_command, shell=True, stdout=PIPE)
+          client, spotify_command, shell=True, stdout=PIPE)
 
 
 def control_volume(volume_percent):
