@@ -41,6 +41,8 @@ def main():
         show_playback_status()
     elif args.lyrics:
         show_lyrics()
+    elif args.arturl:
+        show_art_url()
     elif args.play:
         perform_spotify_action("Play")
     elif args.pause:
@@ -96,6 +98,7 @@ def get_arguments():
         ("--artist", "shows artist name"),
         ("--artistshort", "shows artist name in a short way"),
         ("--album", "shows album name"),
+        ("--arturl", "shows album image url"),
         ("--playbackstatus", "shows playback status"),
         ("--play", "plays the song"),
         ("--pause", "pauses the song"),
@@ -175,6 +178,9 @@ def show_album():
     metadata = get_spotify_property("Metadata")
     print("%s" % metadata['xesam:album'])
 
+def show_art_url():
+    metadata = get_spotify_property("Metadata")
+    print("%s" % metadata['mpris:artUrl'])
 
 def get_spotify_property(spotify_property):
     try:
