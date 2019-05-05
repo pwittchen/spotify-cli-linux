@@ -204,9 +204,10 @@ def get_spotify_property(spotify_property):
 
 
 def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" '
+    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' % 
+          client + 
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
-          client, spotify_command, shell=True, stdout=PIPE)
+          spotify_command, shell=True, stdout=PIPE)
 
 
 def control_volume(volume_percent):
