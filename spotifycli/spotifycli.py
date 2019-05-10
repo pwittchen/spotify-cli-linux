@@ -64,7 +64,7 @@ def start_shell():
                 command = input('spotify > ')
             else:
                 command = raw_input('spotify > ')
-        except EOFError as exception:
+        except EOFError:
             print("Have a nice day!")
             exit(0)
 
@@ -121,25 +121,24 @@ def get_song():
 
 def show_status():
     artist, title = get_song()
-    print("%s - %s" % (artist, title))
-
+    print(f'{artist} - {title}')
 
 def show_status_short():
     artist, title = get_song()
     artist = artist[:15] + (artist[15:] and '...')
     title = title[:10] + (title[10:] and '...')
-    print("%s - %s" % (artist, title))
+    print(f'{artist} - {title}')
 
 
 def show_song():
     _, title = get_song()
-    print("%s" % title)
+    print(f'{title}')
 
 
 def show_song_short():
     _, title = get_song()
     title = title[:10] + (title[10:] and '...')
-    print("%s" % title)
+    print(f'{title}')
 
 
 def show_lyrics():
@@ -154,13 +153,13 @@ def show_lyrics():
 
 def show_artist():
     artist, _ = get_song()
-    print("%s" % artist)
+    print(f'{artist}')
 
 
 def show_artist_short():
     artist, _ = get_song()
     artist = artist[:15] + (artist[15:] and '...')
-    print("%s" % artist)
+    print(f'{artist}')
 
 
 def show_playback_status():
@@ -173,7 +172,8 @@ def show_playback_status():
 
 def show_album():
     metadata = get_spotify_property("Metadata")
-    print("%s" % metadata['xesam:album'])
+    album = metadata['xesam:album']
+    print(f'{album}')
 
 
 def get_spotify_property(spotify_property):
