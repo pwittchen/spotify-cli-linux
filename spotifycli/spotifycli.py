@@ -9,7 +9,7 @@ import dbus
 import lyricwikia
 from subprocess import Popen, PIPE, check_output
 
-if sys.version_info > (3, 6):
+if sys.version_info[0] >= 3:
     from .version import __version__
 else:
     from version import __version__
@@ -60,7 +60,7 @@ def main():
 def start_shell():
     while(True):
         try:
-            if sys.version_info > (3, 6):
+            if sys.version_info[0] >= 3:
                 command = input('spotify > ')
             else:
                 command = raw_input('spotify > ')
