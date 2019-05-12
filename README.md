@@ -45,6 +45,7 @@ use one of the following parameters:
 --artist          shows artists name
 --artistshort     shows artist name in a short way
 --album           shows album name
+--arturl          shows album image url
 --lyrics          shows lyrics for the song playing
 --playbackstatus  shows playback status
 --play            plays the song
@@ -54,6 +55,7 @@ use one of the following parameters:
 --prev            plays the previous song
 --volumeup        increases sound volume
 --volumedown      decreases sound volume
+--client CLIENT   sets client's dbus name
 ```
 
 if you don't use any parameters, you'll enter the shell mode, where you'll be able to use all commands mentioned above
