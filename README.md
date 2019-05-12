@@ -12,26 +12,14 @@ installation
 ------------
 
 ```
-sudo pip install spotify-cli-linux
-```
-
-or
-
-```
-sudo python3 -m pip install spotify-cli-linux
+pip install spotify-cli-linux
 ```
 
 upgrade
 -------
 
 ```
-sudo pip install spotify-cli-linux --upgrade
-```
-
-or
-
-```
-sudo python3 -m pip install spotify-cli-linux --upgrade
+pip install spotify-cli-linux --upgrade
 ```
 
 usage
@@ -57,6 +45,7 @@ use one of the following parameters:
 --artist          shows artists name
 --artistshort     shows artist name in a short way
 --album           shows album name
+--arturl          shows album image url
 --lyrics          shows lyrics for the song playing
 --playbackstatus  shows playback status
 --play            plays the song
@@ -66,6 +55,7 @@ use one of the following parameters:
 --prev            plays the previous song
 --volumeup        increases sound volume
 --volumedown      decreases sound volume
+--client CLIENT   sets client's dbus name
 ```
 
 if you don't use any parameters, you'll enter the shell mode, where you'll be able to use all commands mentioned above
