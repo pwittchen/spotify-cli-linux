@@ -128,8 +128,7 @@ make docs
 
 to run docs locally, type:
 ```
-git checkout gh-pages
-./serve.sh
+git checkout gh-pages && ./serve.sh
 ```
 
 and view page with docs at: 0.0.0.0:8000
