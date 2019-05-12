@@ -58,10 +58,7 @@ def main():
 def start_shell():
     while(True):
         try:
-            if sys.version_info[0] >= 3:
-                command = input('spotify > ')
-            else:
-                command = raw_input('spotify > ')
+            command = input('spotify > ')
         except EOFError:
             print("Have a nice day!")
             exit(0)
