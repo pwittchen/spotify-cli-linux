@@ -8,7 +8,7 @@ import argparse
 import dbus
 import lyricwikia
 from subprocess import Popen, PIPE, check_output
-from version import __version__
+from .version import __version__
 
 def main():
     if len(sys.argv) == 1:

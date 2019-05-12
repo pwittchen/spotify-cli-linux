@@ -1,7 +1,7 @@
 clean:
 	sudo rm MANIFEST || true && sudo rm -rf dist/ || true && sudo rm -rf spotify_cli_linux.egg-info || true && sudo rm spotifycli/*.pyc || true && sudo rm -rf spotifycli/__pycache__ || true
 dist:
-	sudo python3 setup.py sdist
+	sudo python setup.py sdist
 upload:
 	twine upload dist/*
 release: clean dist upload
