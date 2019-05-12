@@ -3,6 +3,7 @@ CHANGELOG
 
 v. 1.5.0
 --------
+*12 May 2019*
 - performed code cleanup by re-ordering functions
 - fixed grammar in docs
 - replaced duplicated calls in bash scripts with loops
