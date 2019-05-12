@@ -1,4 +1,4 @@
-#!/usr/bin/python -u
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """a command line interface to Spotify on Linux"""
 
@@ -8,12 +8,7 @@ import argparse
 import dbus
 import lyricwikia
 from subprocess import Popen, PIPE, check_output
-
-if sys.version_info[0] >= 3:
-    from .version import __version__
-else:
-    from version import __version__
-
+from version import __version__
 
 def main():
     if len(sys.argv) == 1:
