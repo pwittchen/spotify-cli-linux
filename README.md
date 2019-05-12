@@ -15,12 +15,16 @@ installation
 pip install spotify-cli-linux
 ```
 
+hint: if you encounter problems during installation, try to call command with `sudo`
+
 upgrade
 -------
 
 ```
 pip install spotify-cli-linux --upgrade
 ```
+
+hint: if you enconunter problems during upgrade, try to call command with `sudo`
 
 usage
 -----
