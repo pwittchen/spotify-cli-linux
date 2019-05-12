@@ -1,6 +1,18 @@
 CHANGELOG
 =========
 
+v. 1.5.0
+--------
+- performed code cleanup by re-ordering functions
+- fixed grammar in docs
+- replaced duplicated calls in bash scripts with loops
+- updated string formatting with `print(f'...')` method - PR #44
+- changed version check to all Python 3 versions - PR #46
+- added function to display the image url of the album with `--arturl` parameter - PR #45
+- added support for third-party clients with `--client CLIENTNAME` parameter - PR #45
+- abandonned deprecated Python 2 support (Python 2.7 development will stop in 2020)
+- now we're supporting Python 3 only what was reflected in the script shebang and code
+
 v. 1.4.2
 --------
 *04 Apr 2019*
