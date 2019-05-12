@@ -14,8 +14,10 @@ def main():
     if len(sys.argv) == 1:
         start_shell()
         return 0
-
+    
+    global client
     args = add_arguments()
+    client = args.client
     if args.version:
         show_version()
     elif args.status:
@@ -36,6 +38,8 @@ def main():
         show_playback_status()
     elif args.lyrics:
         show_lyrics()
+    elif args.arturl:
+        show_art_url()
     elif args.play:
         perform_spotify_action("Play")
     elif args.pause:
@@ -78,6 +82,8 @@ def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
         parser.add_argument(argument[0], help=argument[1], action="store_true")
+    parser.add_argument("--client", action="store", dest="client",
+                        help="sets client's dbus name", default="spotify")
     return parser.parse_args()
 
 
@@ -91,6 +97,7 @@ def get_arguments():
         ("--artist", "shows artist name"),
         ("--artistshort", "shows artist name in a short way"),
         ("--album", "shows album name"),
+        ("--arturl", "shows album image url"),
         ("--playbackstatus", "shows playback status"),
         ("--play", "plays the song"),
         ("--pause", "pauses the song"),
@@ -170,12 +177,15 @@ def show_album():
     album = metadata['xesam:album']
     print(f'{album}')
 
+def show_art_url():
+    metadata = get_spotify_property("Metadata")
+    print("%s" % metadata['mpris:artUrl'])
 
 def get_spotify_property(spotify_property):
     try:
         session_bus = dbus.SessionBus()
         spotify_bus = session_bus.get_object(
-            "org.mpris.MediaPlayer2.spotify",
+            "org.mpris.MediaPlayer2.%s" % client,
             "/org/mpris/MediaPlayer2")
         spotify_properties = dbus.Interface(
             spotify_bus,
@@ -189,7 +199,8 @@ def get_spotify_property(spotify_property):
 
 
 def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify '
+    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' % 
+          client + 
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
           spotify_command, shell=True, stdout=PIPE)
 
