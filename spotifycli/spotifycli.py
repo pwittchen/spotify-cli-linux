@@ -8,7 +8,6 @@ import argparse
 import dbus
 import lyricwikia
 from subprocess import Popen, PIPE, check_output
-from .version import __version__
 
 def main():
     if len(sys.argv) == 1:
@@ -111,7 +110,7 @@ def get_arguments():
 
 
 def show_version():
-    print(__version__)
+    print("1.5.0")
 
 
 def get_song():
