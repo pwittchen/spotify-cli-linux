@@ -147,7 +147,7 @@ username:yourusername
 password:yourpassword
 ```
 
-then, update version in `spotifycli/version.py` and type:
+then, update version in `spotifycli/version.py` and `spotifycli/spotifycli.py` and type:
 
 ```
 make release
