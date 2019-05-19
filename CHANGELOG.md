@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.5.1
+--------
+*19 May 2019*
+- fixed displaying of the lyrics - PR #48
+
 v. 1.5.0
 --------
 *12 May 2019*
