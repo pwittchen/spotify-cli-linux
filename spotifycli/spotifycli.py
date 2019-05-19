@@ -9,11 +9,12 @@ import dbus
 import lyricwikia
 from subprocess import Popen, PIPE, check_output
 
+
 def main():
     if len(sys.argv) == 1:
         start_shell()
         return 0
-    
+
     global client
     args = add_arguments()
     client = args.client
@@ -121,6 +122,7 @@ def show_status():
     artist, title = get_song()
     print(f'{artist} - {title}')
 
+
 def show_status_short():
     artist, title = get_song()
     artist = artist[:15] + (artist[15:] and '...')
@@ -173,9 +175,11 @@ def show_album():
     album = metadata['xesam:album']
     print(f'{album}')
 
+
 def show_art_url():
     metadata = get_spotify_property("Metadata")
     print("%s" % metadata['mpris:artUrl'])
+
 
 def get_spotify_property(spotify_property):
     try:
@@ -195,8 +199,8 @@ def get_spotify_property(spotify_property):
 
 
 def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' % 
-          client + 
+    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' %
+          client +
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
           spotify_command, shell=True, stdout=PIPE)
 
