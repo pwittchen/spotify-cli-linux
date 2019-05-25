@@ -156,3 +156,5 @@ then, update version in `spotifycli/version.py` and `spotifycli/spotifycli.py` a
 ```
 make release
 ```
+
+**note**: Version is not kept in a single file due to problems with importing files within another file and distributing them to PyPi. There are also Python vesion issues. If you know how to fix this issue properly to keep version in one place, I'd be happy to review your PR :-).
