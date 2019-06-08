@@ -15,7 +15,7 @@ installation
 pip install spotify-cli-linux
 ```
 
-hint: if you encounter problems during installation, try to call command with `sudo`
+**hint**: if you encounter problems during installation, try to call command with `sudo`
 
 upgrade
 -------
@@ -24,7 +24,7 @@ upgrade
 pip install spotify-cli-linux --upgrade
 ```
 
-hint: if you enconunter problems during upgrade, try to call command with `sudo`
+**hint**: if you enconunter problems during upgrade, try to call command with `sudo`
 
 usage
 -----
@@ -67,6 +67,8 @@ if you don't use any parameters, you'll enter the shell mode, where you'll be ab
 solving problems
 ----------------
 
+### dbus
+
 When you've seen the following error:
 
 ```
@@ -80,6 +82,14 @@ sudo apt-get install python-dbus
 ```
 
 If you are using another distro, then try to install `python-dbus` with your package manager.
+
+### lyricwikia
+
+When, you're missing `lyricwikia` dependency, run the following command:
+
+```
+pip install lyricwikia
+```
 
 usage with tmux
 ---------------
@@ -156,3 +166,5 @@ then, update version in `spotifycli/version.py` and `spotifycli/spotifycli.py` a
 ```
 make release
 ```
+
+**note**: Version is not kept in a single file due to problems with importing files within another file and distributing them to PyPi. There are also Python vesion issues. If you know how to fix this issue properly to keep version in one place, I'd be happy to review your PR :-).

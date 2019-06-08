@@ -1,0 +1,13 @@
+README.md
+setup.cfg
+setup.py
+spotify_cli_linux.egg-info/PKG-INFO
+spotify_cli_linux.egg-info/SOURCES.txt
+spotify_cli_linux.egg-info/dependency_links.txt
+spotify_cli_linux.egg-info/entry_points.txt
+spotify_cli_linux.egg-info/requires.txt
+spotify_cli_linux.egg-info/top_level.txt
+spotifycli/__init__.py
+spotifycli/__main__.py
+spotifycli/spotifycli.py
+spotifycli/version.py
