@@ -4,9 +4,7 @@
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
-This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
-
-View this project on PyPi at https://pypi.org/project/spotify-cli-linux/.
+This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS. It should be simple and follow [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy).
 
 installation
 ------------
@@ -146,6 +144,8 @@ git checkout gh-pages && ./serve.sh
 ```
 
 and view page with docs at: 0.0.0.0:8000
+
+view it on-line at https://pwittchen.github.io/spotify-cli-linux
 
 releasing
 ---------
