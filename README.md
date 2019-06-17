@@ -4,7 +4,7 @@
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
-This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS. It should be simple and follow [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy).
+This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS. It should be simple and follow the [Unix philosophy](https://en.wikipedia.org/wiki/Unix_philosophy).
 
 installation
 ------------
