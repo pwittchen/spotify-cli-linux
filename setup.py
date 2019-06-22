@@ -1,13 +1,12 @@
 from setuptools import setup
 from distutils.core import setup
 from spotifycli.version import __version__
-from spotifycli.spotifycli import __doc__
 
 setup(
     name='spotify-cli-linux',
     version=__version__,
     python_requires='>=3.6',
-    description=__doc__,
+    description="a command line interface to Spotify on Linux",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
     author='Piotr Wittchen',
