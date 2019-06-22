@@ -1,6 +1,11 @@
 CHANGELOG
 =========
 
+v. 1.6.0
+--------
+*22 Jun 2019*
+- removed volume controls
+
 v. 1.5.1
 --------
 *19 May 2019*
