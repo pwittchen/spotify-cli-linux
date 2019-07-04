@@ -2,12 +2,13 @@
 # -*- coding: utf-8 -*-
 """a command line interface to Spotify on Linux"""
 
-import sys
-import os
 import argparse
+import os
+import sys
+from subprocess import Popen, PIPE
+
 import dbus
 import lyricwikia
-from subprocess import Popen, PIPE, check_output
 
 
 def main():
@@ -53,7 +54,7 @@ def main():
 
 
 def start_shell():
-    while(True):
+    while True:
         try:
             command = input('spotify > ')
         except EOFError:

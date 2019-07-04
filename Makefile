@@ -6,7 +6,7 @@ upload:
 	twine upload dist/*
 release: clean dist upload
 requirements:
-	pip3 install -r dev-requirements.txt --upgrade
+	sudo pip install -r dev-requirements.txt --upgrade
 format:
 	./format.sh
 checkformat:
