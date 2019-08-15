@@ -51,6 +51,8 @@ def main():
         perform_spotify_action("Next")
     elif args.prev:
         perform_spotify_action("Previous")
+    elif arg.exit:
+        exit(1)
 
 
 def start_shell():
@@ -99,6 +101,7 @@ def get_arguments():
         ("--lyrics", "shows the lyrics for the song"),
         ("--next", "plays the next song"),
         ("--prev", "plays the previous song")
+        ("--exit", "exit from spotifycli")
     ]
 
 
