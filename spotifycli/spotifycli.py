@@ -63,7 +63,7 @@ def start_shell():
             print("Have a nice day!")
             exit(0)
         except KeyboardInterrupt:
-           print("\nOops Interrupted!")
+           print("\nOops Interrupted 😓")
            exit(0)
 
         pid = os.fork()
