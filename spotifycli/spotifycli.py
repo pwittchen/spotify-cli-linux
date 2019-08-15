@@ -51,7 +51,7 @@ def main():
         perform_spotify_action("Next")
     elif args.prev:
         perform_spotify_action("Previous")
-    elif arg.exit:
+    elif args.exit:
         exit(1)
 
 
