@@ -52,8 +52,8 @@ def main():
     elif args.prev:
         perform_spotify_action("Previous")
     elif args.exit:
-        exit(1)
-
+        print("Thanks for using spotifycli 😀")
+        os.system("pkill spotifycli")
 
 def start_shell():
     while True:
@@ -62,6 +62,9 @@ def start_shell():
         except EOFError:
             print("Have a nice day!")
             exit(0)
+        except KeyboardInterrupt:
+           print("\nOops Interrupted!")
+           exit(0)
 
         pid = os.fork()
 
