@@ -100,7 +100,7 @@ def get_arguments():
         ("--playpause", "plays or pauses the song (toggles a state)"),
         ("--lyrics", "shows the lyrics for the song"),
         ("--next", "plays the next song"),
-        ("--prev", "plays the previous song")
+        ("--prev", "plays the previous song"),
         ("--exit", "exit from spotifycli")
     ]
 
