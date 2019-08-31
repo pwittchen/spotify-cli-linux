@@ -14,6 +14,7 @@ pip install spotify-cli-linux
 ```
 
 **hint #1**: if you encounter problems during installation, try to call command with `sudo`
+
 **hint #2**: if you still have problems (e.g. with resolving project dependencies), try to call `pip3` instead of `pip`
 
 if you have any problems with `pip`, you can try to install the script in the alternative way as a workaround:
