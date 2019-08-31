@@ -32,7 +32,7 @@ upgrade
 pip install spotify-cli-linux --upgrade
 ```
 
-**hint**: if you enconunter problems during upgrade, try to call command with `sudo`
+for the upgrade, you can apply the same hints like for installation
 
 usage
 -----
