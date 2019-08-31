@@ -6,8 +6,6 @@ A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
 This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
 
-View this project on PyPi at https://pypi.org/project/spotify-cli-linux/.
-
 installation
 ------------
 
@@ -15,7 +13,17 @@ installation
 pip install spotify-cli-linux
 ```
 
-**hint**: if you encounter problems during installation, try to call command with `sudo`
+**hint #1**: if you encounter problems during installation, try to call command with `sudo`
+
+**hint #2**: if you still have problems (e.g. with resolving project dependencies), try to call `pip3` instead of `pip`
+
+if you have any problems with `pip` or `pip3`, you can try to install the script in the alternative way as a workaround:
+
+```
+git clone git@github.com:pwittchen/spotify-cli-linux.git
+cd spotify-cli-linux
+sudo cp spotifycli/spotifycli.py /usr/local/bin/spotifycli
+```
 
 upgrade
 -------
@@ -24,7 +32,7 @@ upgrade
 pip install spotify-cli-linux --upgrade
 ```
 
-**hint**: if you enconunter problems during upgrade, try to call command with `sudo`
+for the upgrade, you can apply the same hints like for installation
 
 usage
 -----
@@ -57,8 +65,6 @@ use one of the following parameters:
 --playpause       plays or pauses the song (toggles a state)
 --next            plays the next song
 --prev            plays the previous song
---volumeup        increases sound volume
---volumedown      decreases sound volume
 --client CLIENT   sets client's dbus name
 ```
 
@@ -146,6 +152,8 @@ git checkout gh-pages && ./serve.sh
 ```
 
 and view page with docs at: 0.0.0.0:8000
+
+view it on-line at https://pwittchen.github.io/spotify-cli-linux
 
 releasing
 ---------
