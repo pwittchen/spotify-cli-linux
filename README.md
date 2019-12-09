@@ -66,6 +66,8 @@ use one of the following parameters:
 --next            plays the next song
 --prev            plays the previous song
 --client CLIENT   sets client's dbus name
+--export          export lyrics
+--token TOKEN     sets token to use genius API
 ```
 
 if you don't use any parameters, you'll enter the shell mode, where you'll be able to use all commands mentioned above
