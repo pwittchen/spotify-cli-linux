@@ -86,15 +86,16 @@ def start_shell():
             print("Have a nice day!")
             exit(0)
 
-        pid = os.fork()
+        if command.replace(" ", "") != "":
+            pid = os.fork()
 
-        if pid == 0:  # if executing context is child process
-            os.execlp("spotifycli", "spotifycli", "--{}".format(command))
-        elif pid > 0:
-            os.waitpid(pid, 0)  # wait for child to exit
-        else:
-            print("Error during call to fork()")
-            exit(1)
+            if pid == 0:  # if executing context is child process
+                os.execlp("spotifycli", "spotifycli", "--{}".format(command))
+            elif pid > 0:
+                os.waitpid(pid, 0)  # wait for child to exit
+            else:
+                print("Error during call to fork()")
+                exit(1)
 
 
 def add_arguments():
