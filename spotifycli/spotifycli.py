@@ -1,11 +1,14 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
 """a command line interface to Spotify on Linux"""
-
+from __future__ import print_function
 import argparse
 import os
 import sys
+
+
 from subprocess import Popen, PIPE
+
 
 import dbus
 import lyricwikia
@@ -15,7 +18,6 @@ def main():
     if len(sys.argv) == 1:
         start_shell()
         return 0
-
     global client
     args = add_arguments()
     client = args.client
@@ -56,7 +58,7 @@ def main():
 def start_shell():
     while True:
         try:
-            command = input('spotify > ')
+            command = raw_input('spotify >> ')
         except EOFError:
             print("Have a nice day!")
             exit(0)
@@ -70,7 +72,6 @@ def start_shell():
         else:
             print("Error during call to fork()")
             exit(1)
-
 
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
@@ -103,7 +104,7 @@ def get_arguments():
 
 
 def show_version():
-    print("1.6.0")
+    print("1.7.0")
 
 
 def get_song():
@@ -115,25 +116,23 @@ def get_song():
 
 def show_status():
     artist, title = get_song()
-    print(f'{artist} - {title}')
-
-
+    print(fartist , title)
 def show_status_short():
     artist, title = get_song()
     artist = artist[:15] + (artist[15:] and '...')
     title = title[:10] + (title[10:] and '...')
-    print(f'{artist} - {title}')
+    print(artist , title)
 
 
 def show_song():
     _, title = get_song()
-    print(f'{title}')
+    print(title)
 
 
 def show_song_short():
     _, title = get_song()
     title = title[:10] + (title[10:] and '...')
-    print(f'{title}')
+    print(title)
 
 
 def show_lyrics():
@@ -148,13 +147,13 @@ def show_lyrics():
 
 def show_artist():
     artist, _ = get_song()
-    print(f'{artist}')
+    print(artist)
 
 
 def show_artist_short():
     artist, _ = get_song()
     artist = artist[:15] + (artist[15:] and '...')
-    print(f'{artist}')
+    print(artist)
 
 
 def show_playback_status():
@@ -168,7 +167,7 @@ def show_playback_status():
 def show_album():
     metadata = get_spotify_property("Metadata")
     album = metadata['xesam:album']
-    print(f'{album}')
+    print(album)
 
 
 def show_art_url():
