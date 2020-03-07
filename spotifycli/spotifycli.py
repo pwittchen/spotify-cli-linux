@@ -9,6 +9,7 @@ from subprocess import Popen, PIPE
 
 import dbus
 import lyricwikia
+import azlyrics
 
 
 def main():
@@ -137,13 +138,16 @@ def show_song_short():
 
 
 def show_lyrics():
+    artist, title = get_song()
     try:
-        artist, title = get_song()
         lyrics = lyricwikia.get_all_lyrics(artist, title)
-        lyrics = ''.join(lyrics[0])
-        print(lyrics)
     except BaseException:
-        print('lyrics not found')
+        lyrics = azlyrics.lyrics(artist, title)
+        if "Error" in lyrics:
+            print('lyrics not found')
+            return
+    lyrics = ''.join(lyrics[0])
+    print(lyrics)
 
 
 def show_artist():
