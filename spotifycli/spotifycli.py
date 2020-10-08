@@ -56,7 +56,7 @@ def main():
 def start_shell():
     while True:
         try:
-            command = input('spotify > ')
+            command = input('spotify > ').strip()
         except EOFError:
             print("Have a nice day!")
             exit(0)
