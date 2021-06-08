@@ -8,9 +8,9 @@ release: clean dist upload
 requirements:
 	sudo pip install -r dev-requirements.txt --upgrade
 format:
-	./format.sh
+	python ./format.py
 checkformat:
-	./checkformat.sh
+	python ./check_format.py
 lint:
 	pylint spotifycli/spotifycli.py spotifycli/version.py spotifycli/__main__.py spotifycli/__init__.py setup.py
 docs:
