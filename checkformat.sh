@@ -3,5 +3,5 @@ files=( "spotifycli/spotifycli.py" "spotifycli/version.py" "spotifycli/__main__.
 for i in "${files[@]}"
 do
     :
-    pycodestyle --show-source --show-pep8 --format=default $i
+    pycodestyle --show-source --show-pep8 --format=default "$i"
 done
