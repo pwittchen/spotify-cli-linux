@@ -4,4 +4,4 @@ python:
 install:
   pip install pycodestyle
 script:
-  - bash checkformat.sh
+  - python ./checkformat.py
