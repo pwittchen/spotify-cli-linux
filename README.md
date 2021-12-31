@@ -42,7 +42,7 @@ start the official Spotify desktop app
 run the following command from your terminal:
 
 ```
-spotifycli
+spoticli
 ```
 
 use one of the following parameters:
