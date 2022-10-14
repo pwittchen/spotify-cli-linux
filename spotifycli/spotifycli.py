@@ -5,6 +5,7 @@
 import argparse
 import os
 import sys
+import datetime
 from subprocess import Popen, PIPE
 
 import dbus
@@ -25,6 +26,8 @@ def main():
         show_status()
     elif args.statusshort:
         show_status_short()
+    elif args.statusposition:
+        show_status_position()
     elif args.song:
         show_song()
     elif args.songshort:
@@ -85,6 +88,7 @@ def get_arguments():
     return [
         ("--version", "shows version number"),
         ("--status", "shows song name and artist"),
+        ("--statusposition", "shows song name and artist, with current playback position"),
         ("--statusshort", "shows status in a short way"),
         ("--song", "shows the song name"),
         ("--songshort", "shows the song name in a short way"),
@@ -116,6 +120,33 @@ def get_song():
 def show_status():
     artist, title = get_song()
     print(f'{artist} - {title}')
+
+def convert_timedelta(duration):
+    days, seconds = duration.days, duration.seconds
+    hours = days * 24 + seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = (seconds % 60)
+    return str(hours).zfill(2), str(minutes).zfill(2), str(seconds).zfill(2)
+
+def show_status_position():
+    metadata = get_spotify_property("Metadata")
+    position_raw = get_spotify_property("Position")
+
+    artist = metadata['xesam:artist'][0]
+    title = metadata['xesam:title']
+
+    # Both values are in microseconds
+    position = datetime.timedelta(milliseconds=position_raw / 1000)
+    length = datetime.timedelta(milliseconds=metadata['mpris:length'] / 1000)
+
+    p_hours, p_minutes, p_seconds = convert_timedelta(position)
+    l_hours, l_minutes, l_seconds = convert_timedelta(length)
+
+    if l_hours != "00":
+        # Only show hours if the song is more than an hour long
+        print(f'{artist} - {title} ({p_hours}:{p_minutes}:{p_seconds}/{l_hours}:{l_minutes}:{l_seconds})')
+    else:
+        print(f'{artist} - {title} ({p_minutes}:{p_seconds}/{l_minutes}:{l_seconds})')
 
 
 def show_status_short():
