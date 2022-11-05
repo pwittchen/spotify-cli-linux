@@ -52,6 +52,7 @@ use one of the following parameters:
 --version         shows version number
 --status          shows song name and artist
 --statusshort     shows status in a short way
+--statusposition  shows song name and artist, with current playback position
 --song            shows the song name
 --songshort       shows the song name in a short way
 --artist          shows artists name
