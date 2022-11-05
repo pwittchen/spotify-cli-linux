@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.7.1
+--------
+*05 Nov 2022*
+
+- updated version number
+
 v. 1.7.0
 --------
 *05 Nov 2022*
