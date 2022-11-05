@@ -1,6 +1,19 @@
 CHANGELOG
 =========
 
+v. 1.7.0
+--------
+*05 Nov 2022*
+
+- added statusposition argument
+- fixed file name in .travis.yml: checkformat.py -> check_format.py
+- fixed .travis.yml CI build config
+- converted bash Scripts to Python Scripts
+- added double quote to prevent globbing and word splitting
+- added strip method to remove blank spaces in input
+- updated formatting and Makefile
+- updated shebang
+
 v. 1.6.0
 --------
 *22 Jun 2019*
@@ -58,7 +71,7 @@ v. 1.2.6
 v. 1.2.5
 --------
 *05 Jan 2019*
-- updating setup.py (adding `long_description`) and simplifying release task in Makefile 
+- updating setup.py (adding `long_description`) and simplifying release task in Makefile
 
 v. 1.2.4
 --------
