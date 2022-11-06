@@ -1,0 +1,23 @@
+name: 'Build'
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.6'
+        cache: 'pip'
+    - name: install-requirements
+      run: pip install -r requirements.txt
+    - name: check-format
+      run: python ./check_format.py

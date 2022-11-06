@@ -3,3 +3,4 @@ pycodestyle
 pylint
 setuptools
 twine
+lyricwikia
