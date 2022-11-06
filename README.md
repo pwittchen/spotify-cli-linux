@@ -1,6 +1,6 @@
 # spotify-cli-linux
 
-[![Build Status](https://img.shields.io/travis/pwittchen/spotify-cli-linux.svg?branch=master&style=flat-square)](https://travis-ci.org/pwittchen/spotify-cli-linux) [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/) [![Python versions](https://img.shields.io/pypi/pyversions/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
+[![Build](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml/badge.svg)] (https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml) [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/) [![Python versions](https://img.shields.io/pypi/pyversions/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
