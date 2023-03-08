@@ -38,6 +38,8 @@ def main():
         show_artist_short()
     elif args.album:
         show_album()
+    elif args.position:
+        show_position()
     elif args.playbackstatus:
         show_playback_status()
     elif args.lyrics:
@@ -95,6 +97,7 @@ def get_arguments():
         ("--artist", "shows artist name"),
         ("--artistshort", "shows artist name in a short way"),
         ("--album", "shows album name"),
+        ("--position", "shows song position"),
         ("--arturl", "shows album image url"),
         ("--playbackstatus", "shows playback status"),
         ("--play", "plays the song"),
@@ -229,6 +232,22 @@ def perform_spotify_action(spotify_command):
           client +
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
           spotify_command, shell=True, stdout=PIPE)
+
+def show_position():
+    metadata = get_spotify_property("Metadata")
+    position_raw = get_spotify_property("Position")
+    # Both values are in microseconds
+    position = datetime.timedelta(milliseconds=position_raw / 1000)
+    length = datetime.timedelta(milliseconds=metadata['mpris:length'] / 1000)
+
+    p_hours, p_minutes, p_seconds = convert_timedelta(position)
+    l_hours, l_minutes, l_seconds = convert_timedelta(length)
+
+    if l_hours != "00":
+        # Only show hours if the song is more than an hour long
+        print(f'({p_hours}:{p_minutes}:{p_seconds}/{l_hours}:{l_minutes}:{l_seconds})')
+    else:
+        print(f'({p_minutes}:{p_seconds}/{l_minutes}:{l_seconds})')
 
 
 if __name__ == "__main__":
