@@ -61,6 +61,7 @@ use one of the following parameters:
 --arturl          shows album image url
 --lyrics          shows lyrics for the song playing
 --playbackstatus  shows playback status
+--position        shows song position
 --play            plays the song
 --pause           pauses the song
 --playpause       plays or pauses the song (toggles a state)
