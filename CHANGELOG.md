@@ -1,6 +1,13 @@
 CHANGELOG
 =========
 
+v. 1.8.0
+--------
+*11 Mar 2023*
+
+- added --position param
+- updated CI configuration
+
 v. 1.7.1
 --------
 *05 Nov 2022*

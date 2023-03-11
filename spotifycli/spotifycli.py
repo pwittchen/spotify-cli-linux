@@ -110,7 +110,7 @@ def get_arguments():
 
 
 def show_version():
-    print("1.7.1")
+    print("1.8.0")
 
 
 def get_song():
