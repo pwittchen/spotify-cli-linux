@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.8.1
+--------
+*15 Mar 2023*
+
+- automated deployment to pypi
+
 v. 1.8.0
 --------
 *11 Mar 2023*

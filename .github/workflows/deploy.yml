@@ -1,0 +1,29 @@
+
+name: 'Deploy'
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: checkout
+      uses: actions/checkout@v3
+    - name: setup-python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.6'
+        cache: 'pip'
+    - name: install-requirements
+      run: pip install -r requirements.txt
+    - name: check-format
+      run: python ./check_format.py
+    - name: deploy-package
+      uses: remorses/pypi@master
+      with:
+        setupfile: ./setup.py
+        username: ${{secrets.PYPI_USERNAME}}
+        password: ${{secrets.PYPI_PASSWORD}}
