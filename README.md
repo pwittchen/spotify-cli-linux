@@ -160,6 +160,8 @@ view it on-line at https://pwittchen.github.io/spotify-cli-linux
 releasing
 ---------
 
+currently release is automated via `deploy.yml` GitHub Action, but it can be done manually too
+
 configure your `~/.pypirc` file as follows:
 
 ```
