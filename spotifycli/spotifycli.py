@@ -213,8 +213,23 @@ def show_art_url():
 def get_spotify_property(spotify_property):
     try:
         session_bus = dbus.SessionBus()
+        names = dbus.Interface(
+            session_bus.get_object(
+                "org.freedesktop.DBus",
+                "/org/freedesktop/DBus"),
+            "org.freedesktop.DBus").ListNames()
+        mpris_name = None
+
+        for name in names:
+            if name.startswith("org.mpris.MediaPlayer2.%s" % client):
+                mpris_name = name
+
+        if mpris_name is None:
+            sys.stderr.write("No mpris clients found for client %s\n" % client)
+            sys.exit(1)
+
         spotify_bus = session_bus.get_object(
-            "org.mpris.MediaPlayer2.%s" % client,
+            mpris_name,
             "/org/mpris/MediaPlayer2")
         spotify_properties = dbus.Interface(
             spotify_bus,
