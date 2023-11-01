@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.8.2
+--------
+*1 Nov 2023*
+
+- Search the session bus for MPRIS name - PR #79 by @flip1995
+
 v. 1.8.1
 --------
 *15 Mar 2023*
