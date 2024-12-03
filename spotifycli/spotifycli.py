@@ -8,8 +8,10 @@ import sys
 import datetime
 from subprocess import Popen, PIPE
 
-import dbus
 import lyricwikia
+
+from jeepney import DBusAddress, new_method_call
+from jeepney.io.blocking import open_dbus_connection
 
 
 def main():
@@ -115,9 +117,9 @@ def show_version():
 
 def get_song():
     metadata = get_spotify_property("Metadata")
-    artist = metadata['xesam:artist'][0]
-    title = metadata['xesam:title']
-    return (artist, title)
+    artist = ", ".join(metadata['xesam:artist'][1])
+    title = metadata['xesam:title'][1]
+    return artist, title
 
 
 def show_status():
@@ -135,12 +137,11 @@ def show_status_position():
     metadata = get_spotify_property("Metadata")
     position_raw = get_spotify_property("Position")
 
-    artist = metadata['xesam:artist'][0]
-    title = metadata['xesam:title']
+    artist, title = get_song()
 
     # Both values are in microseconds
     position = datetime.timedelta(milliseconds=position_raw / 1000)
-    length = datetime.timedelta(milliseconds=metadata['mpris:length'] / 1000)
+    length = datetime.timedelta(milliseconds=metadata['mpris:length'][1] / 1000)
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)
     l_hours, l_minutes, l_seconds = convert_timedelta(length)
@@ -201,42 +202,52 @@ def show_playback_status():
 
 def show_album():
     metadata = get_spotify_property("Metadata")
-    album = metadata['xesam:album']
+    album = metadata['xesam:album'][1]
     print(f'{album}')
 
 
 def show_art_url():
     metadata = get_spotify_property("Metadata")
-    print("%s" % metadata['mpris:artUrl'])
+    print("%s" % metadata['mpris:artUrl'][1])
 
 
 def get_spotify_property(spotify_property):
     try:
-        session_bus = dbus.SessionBus()
-        names = dbus.Interface(
-            session_bus.get_object(
-                "org.freedesktop.DBus",
-                "/org/freedesktop/DBus"),
-            "org.freedesktop.DBus").ListNames()
-        mpris_name = None
+        dbus_addr = DBusAddress(
+            bus_name="org.freedesktop.DBus",
+            object_path="/org/freedesktop/DBus",
+            interface="org.freedesktop.DBus",
+        )
+        connection = open_dbus_connection(bus="SESSION")
 
-        for name in names:
-            if name.startswith("org.mpris.MediaPlayer2.%s" % client):
-                mpris_name = name
+        list_names_call = new_method_call(
+            remote_obj=dbus_addr, method="ListNames", signature=""
+        )
+        reply = connection.send_and_get_reply(list_names_call)
+        names = reply.body[0]
 
+        client_name = f"org.mpris.MediaPlayer2.{client}"
+        mpris_name = next((name for name in names if name.startswith(client_name)), None)
         if mpris_name is None:
-            sys.stderr.write("No mpris clients found for client %s\n" % client)
+            sys.stderr.write(f"No mpris clients found for client {client}\n")
             sys.exit(1)
 
-        spotify_bus = session_bus.get_object(
-            mpris_name,
-            "/org/mpris/MediaPlayer2")
-        spotify_properties = dbus.Interface(
-            spotify_bus,
-            "org.freedesktop.DBus.Properties")
-        return spotify_properties.Get(
-            "org.mpris.MediaPlayer2.Player",
-            spotify_property)
+        spotify_dbus_addr = DBusAddress(
+            bus_name=mpris_name,
+            object_path="/org/mpris/MediaPlayer2",
+            interface="org.freedesktop.DBus.Properties"
+        )
+        get_property_call = new_method_call(
+            remote_obj=spotify_dbus_addr,
+            method="Get",
+            signature="ss",
+            body=("org.mpris.MediaPlayer2.Player", spotify_property)
+        )
+
+        reply = connection.send_and_get_reply(get_property_call)
+        body = reply.body[0]
+        return body[1]
+
     except BaseException:
         sys.stderr.write("Spotify is off\n")
         sys.exit(1)
@@ -253,7 +264,7 @@ def show_position():
     position_raw = get_spotify_property("Position")
     # Both values are in microseconds
     position = datetime.timedelta(milliseconds=position_raw / 1000)
-    length = datetime.timedelta(milliseconds=metadata['mpris:length'] / 1000)
+    length = datetime.timedelta(milliseconds=metadata['mpris:length'][1] / 1000)
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)
     l_hours, l_minutes, l_seconds = convert_timedelta(length)

@@ -75,22 +75,6 @@ if you don't use any parameters, you'll enter the shell mode, where you'll be ab
 solving problems
 ----------------
 
-### dbus
-
-When you've seen the following error:
-
-```
-No module named dbus
-```
-
-Then try to install `python-dbus`! On Ubuntu you can do it as follows:
-
-```
-sudo apt-get install python-dbus
-```
-
-If you are using another distro, then try to install `python-dbus` with your package manager.
-
 ### lyricwikia
 
 When, you're missing `lyricwikia` dependency, run the following command:
