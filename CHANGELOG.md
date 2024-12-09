@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.8.3
+--------
+*9 Dec 2024*
+
+- Switch to pure python library for dbus - PR #82 by @allhailwesttexas (closes #53)
+
 v. 1.8.2
 --------
 *1 Nov 2023*
