@@ -67,6 +67,7 @@ use one of the following parameters:
 --playpause       plays or pauses the song (toggles a state)
 --next            plays the next song
 --prev            plays the previous song
+--openuri OPENURI plays the track at the provided Uri
 --client CLIENT   sets client's dbus name
 ```
 

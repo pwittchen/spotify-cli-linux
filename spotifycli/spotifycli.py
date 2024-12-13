@@ -58,6 +58,8 @@ def main():
         perform_spotify_action("Next")
     elif args.prev:
         perform_spotify_action("Previous")
+    elif args.openuri:
+        perform_spotify_action("OpenUri", f"string:spotify:track:{args.openuri}")
 
 
 def start_shell():
@@ -82,7 +84,10 @@ def start_shell():
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
-        parser.add_argument(argument[0], help=argument[1], action="store_true")
+        if not argument[2]:
+            parser.add_argument(argument[0], help=argument[1], action="store_true")
+        else:
+            parser.add_argument(argument[0], help=argument[1], action="store")
     parser.add_argument("--client", action="store", dest="client",
                         help="sets client's dbus name", default="spotify")
     return parser.parse_args()
@@ -90,24 +95,25 @@ def add_arguments():
 
 def get_arguments():
     return [
-        ("--version", "shows version number"),
-        ("--status", "shows song name and artist"),
-        ("--statusposition", "shows song name and artist, with current playback position"),
-        ("--statusshort", "shows status in a short way"),
-        ("--song", "shows the song name"),
-        ("--songshort", "shows the song name in a short way"),
-        ("--artist", "shows artist name"),
-        ("--artistshort", "shows artist name in a short way"),
-        ("--album", "shows album name"),
-        ("--position", "shows song position"),
-        ("--arturl", "shows album image url"),
-        ("--playbackstatus", "shows playback status"),
-        ("--play", "plays the song"),
-        ("--pause", "pauses the song"),
-        ("--playpause", "plays or pauses the song (toggles a state)"),
-        ("--lyrics", "shows the lyrics for the song"),
-        ("--next", "plays the next song"),
-        ("--prev", "plays the previous song")
+        ("--version", "shows version number", False),
+        ("--status", "shows song name and artist", False),
+        ("--statusposition", "shows song name and artist, with current playback position", False),
+        ("--statusshort", "shows status in a short way", False),
+        ("--song", "shows the song name", False),
+        ("--songshort", "shows the song name in a short way", False),
+        ("--artist", "shows artist name", False),
+        ("--artistshort", "shows artist name in a short way", False),
+        ("--album", "shows album name", False),
+        ("--position", "shows song position", False),
+        ("--arturl", "shows album image url", False),
+        ("--playbackstatus", "shows playback status", False),
+        ("--play", "plays the song", False),
+        ("--pause", "pauses the song", False),
+        ("--playpause", "plays or pauses the song (toggles a state)", False),
+        ("--lyrics", "shows the lyrics for the song", False),
+        ("--next", "plays the next song", False),
+        ("--prev", "plays the previous song", False),
+        ("--openuri", "plays the track at the provided Uri", True),
     ]
 
 
@@ -253,11 +259,18 @@ def get_spotify_property(spotify_property):
         sys.exit(1)
 
 
-def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' %
-          client +
-          '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
-          spotify_command, shell=True, stdout=PIPE)
+def perform_spotify_action(spotify_command, extra_arg = None):
+    command_list = [
+        "dbus-send",
+        "--print-reply",
+        f"--dest=org.mpris.MediaPlayer2.{client}",
+        "/org/mpris/MediaPlayer2",
+        f"org.mpris.MediaPlayer2.Player.{spotify_command}",
+    ]
+    if extra_arg is not None:
+        command_list.append(extra_arg)
+    command_string = " ".join(command_list)  # could avoid this by taking out shell=False below
+    Popen(command_string, shell=True, stdout=PIPE)
 
 def show_position():
     metadata = get_spotify_property("Metadata")
