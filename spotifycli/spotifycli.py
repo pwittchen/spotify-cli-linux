@@ -5,6 +5,7 @@
 import argparse
 import os
 import sys
+import textwrap
 import datetime
 from subprocess import Popen, PIPE
 
@@ -12,6 +13,11 @@ import lyricwikia
 
 from jeepney import DBusAddress, new_method_call
 from jeepney.io.blocking import open_dbus_connection
+
+
+class SpotifyCLIException(Exception):
+    """An exception wrapper purely to handle known exceptions nicely"""
+    pass
 
 
 def main():
@@ -22,42 +28,57 @@ def main():
     global client
     args = add_arguments()
     client = args.client
-    if args.version:
-        show_version()
-    elif args.status:
-        show_status()
-    elif args.statusshort:
-        show_status_short()
-    elif args.statusposition:
-        show_status_position()
-    elif args.song:
-        show_song()
-    elif args.songshort:
-        show_song_short()
-    elif args.artist:
-        show_artist()
-    elif args.artistshort:
-        show_artist_short()
-    elif args.album:
-        show_album()
-    elif args.position:
-        show_position()
-    elif args.playbackstatus:
-        show_playback_status()
-    elif args.lyrics:
-        show_lyrics()
-    elif args.arturl:
-        show_art_url()
-    elif args.play:
-        perform_spotify_action("Play")
-    elif args.pause:
-        perform_spotify_action("Pause")
-    elif args.playpause:
-        perform_spotify_action("PlayPause")
-    elif args.next:
-        perform_spotify_action("Next")
-    elif args.prev:
-        perform_spotify_action("Previous")
+    success = True
+    try:
+        if args.version:
+            show_version()
+        elif args.status:
+            show_status()
+        elif args.statusshort:
+            show_status_short()
+        elif args.statusposition:
+            show_status_position()
+        elif args.song:
+            show_song()
+        elif args.songshort:
+            show_song_short()
+        elif args.artist:
+            show_artist()
+        elif args.artistshort:
+            show_artist_short()
+        elif args.album:
+            show_album()
+        elif args.position:
+            show_position()
+        elif args.playbackstatus:
+            show_playback_status()
+        elif args.lyrics:
+            show_lyrics()
+        elif args.arturl:
+            show_art_url()
+        elif args.play:
+            perform_spotify_action("Play")
+        elif args.pause:
+            perform_spotify_action("Pause")
+        elif args.playpause:
+            perform_spotify_action("PlayPause")
+        elif args.next:
+            perform_spotify_action("Next")
+        elif args.prev:
+            perform_spotify_action("Previous")
+    except SpotifyCLIException as e:
+        # When SpotifyCLIException is raised, we can assume these are
+        # known issues, and the exception text is sufficiently helpful.
+        # We can skip printing the bulky traceback by catching and only
+        # printing the string repr.
+        sys.stderr.write(str(e))
+        success = False
+    except Exception as e:
+        # Then all other exceptions are handled here, and we just let Python
+        # splatter the exception with the default traceback and everything.
+        raise e from None
+
+    return 0 if success else 1
 
 
 def start_shell():
@@ -92,7 +113,10 @@ def get_arguments():
     return [
         ("--version", "shows version number"),
         ("--status", "shows song name and artist"),
-        ("--statusposition", "shows song name and artist, with current playback position"),
+        (
+            "--statusposition",
+            "shows song name and artist, with current playback position"
+        ),
         ("--statusshort", "shows status in a short way"),
         ("--song", "shows the song name"),
         ("--songshort", "shows the song name in a short way"),
@@ -126,12 +150,14 @@ def show_status():
     artist, title = get_song()
     print(f'{artist} - {title}')
 
+
 def convert_timedelta(duration):
     days, seconds = duration.days, duration.seconds
     hours = days * 24 + seconds // 3600
     minutes = (seconds % 3600) // 60
     seconds = (seconds % 60)
     return str(hours).zfill(2), str(minutes).zfill(2), str(seconds).zfill(2)
+
 
 def show_status_position():
     metadata = get_spotify_property("Metadata")
@@ -141,16 +167,22 @@ def show_status_position():
 
     # Both values are in microseconds
     position = datetime.timedelta(milliseconds=position_raw / 1000)
-    length = datetime.timedelta(milliseconds=metadata['mpris:length'][1] / 1000)
+    length = datetime.timedelta(
+        milliseconds=metadata['mpris:length'][1] / 1000
+    )
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)
     l_hours, l_minutes, l_seconds = convert_timedelta(length)
 
     if l_hours != "00":
         # Only show hours if the song is more than an hour long
-        print(f'{artist} - {title} ({p_hours}:{p_minutes}:{p_seconds}/{l_hours}:{l_minutes}:{l_seconds})')
+        current = f"{p_hours}:{p_minutes}:{p_seconds}"
+        full = f"{l_hours}:{l_minutes}:{l_seconds}"
+        print(f'{artist} - {title} ({current}/{full})')
     else:
-        print(f'{artist} - {title} ({p_minutes}:{p_seconds}/{l_minutes}:{l_seconds})')
+        current = f"{p_minutes}:{p_seconds}"
+        full = f"{l_minutes}:{l_seconds}"
+        print(f'{artist} - {title} ({current}/{full})')
 
 
 def show_status_short():
@@ -172,13 +204,15 @@ def show_song_short():
 
 
 def show_lyrics():
+    artist, title = get_song()
     try:
-        artist, title = get_song()
         lyrics = lyricwikia.get_all_lyrics(artist, title)
-        lyrics = ''.join(lyrics[0])
-        print(lyrics)
-    except BaseException:
-        print('lyrics not found')
+    except lyricwikia.LyricsNotFound:
+        raise SpotifyCLIException(
+            'Lyrics not found or could not connect'
+        ) from None
+    lyrics = ''.join(lyrics[0])
+    print(lyrics)
 
 
 def show_artist():
@@ -212,45 +246,63 @@ def show_art_url():
 
 
 def get_spotify_property(spotify_property):
-    try:
-        dbus_addr = DBusAddress(
-            bus_name="org.freedesktop.DBus",
-            object_path="/org/freedesktop/DBus",
-            interface="org.freedesktop.DBus",
+    dbus_addr = DBusAddress(
+        bus_name="org.freedesktop.DBus",
+        object_path="/org/freedesktop/DBus",
+        interface="org.freedesktop.DBus",
+    )
+    connection = open_dbus_connection(bus="SESSION")
+
+    list_names_call = new_method_call(
+        remote_obj=dbus_addr, method="ListNames", signature=""
+    )
+    reply = connection.send_and_get_reply(list_names_call)
+    if reply.header.message_type.name == 'error':
+        raise SpotifyCLIException(
+            "Could not retrieve list of services (bus names) from dbus." +
+            f"Full error text:\n{reply.header.message}"
         )
-        connection = open_dbus_connection(bus="SESSION")
+    names = reply.body[0]
 
-        list_names_call = new_method_call(
-            remote_obj=dbus_addr, method="ListNames", signature=""
-        )
-        reply = connection.send_and_get_reply(list_names_call)
-        names = reply.body[0]
+    client_name = f"org.mpris.MediaPlayer2.{client}"
+    mpris_name = next(
+        (name for name in names if name.startswith(client_name)), None
+    )
+    if mpris_name is None:
+        raise SpotifyCLIException(
+            f"No mpris clients found for {client}, is {client} running?\n")
 
-        client_name = f"org.mpris.MediaPlayer2.{client}"
-        mpris_name = next((name for name in names if name.startswith(client_name)), None)
-        if mpris_name is None:
-            sys.stderr.write(f"No mpris clients found for client {client}\n")
-            sys.exit(1)
+    spotify_dbus_addr = DBusAddress(
+        bus_name=mpris_name,
+        object_path="/org/mpris/MediaPlayer2",
+        interface="org.freedesktop.DBus.Properties"
+    )
+    get_property_call = new_method_call(
+        remote_obj=spotify_dbus_addr,
+        method="Get",
+        signature="ss",
+        body=("org.mpris.MediaPlayer2.Player", spotify_property)
+    )
+    reply = connection.send_and_get_reply(get_property_call)
+    if reply.header.message_type.name == 'error':
+        err = '>  ' + ' ...\n>  '.join(textwrap.wrap(reply.body[0], 120))
+        if 'AppArmor policy prevents' in reply.body[0]:
+            info = "Could not connect to Spotify instance.\n"
+            info += "It appears AppArmor has the current app sandboxed.\n"
+            info += "This can block method calls via dbus.\n"
+            info += "Try running from a different environment,\n"
+            info += " like the default terminal.\n"
+            info += "Info about AppArmor and sandboxing can be found at:\n"
+            info += " https://ubuntu.com/core/docs/security-and-sandboxing\n"
+            info += f"Full system response:\n{err}"
+            raise SpotifyCLIException(info)
+        else:
+            raise SpotifyCLIException(
+                f"Could not connect to Spotify instance, full response:\n{err}"
+            )
 
-        spotify_dbus_addr = DBusAddress(
-            bus_name=mpris_name,
-            object_path="/org/mpris/MediaPlayer2",
-            interface="org.freedesktop.DBus.Properties"
-        )
-        get_property_call = new_method_call(
-            remote_obj=spotify_dbus_addr,
-            method="Get",
-            signature="ss",
-            body=("org.mpris.MediaPlayer2.Player", spotify_property)
-        )
-
-        reply = connection.send_and_get_reply(get_property_call)
-        body = reply.body[0]
-        return body[1]
-
-    except BaseException:
-        sys.stderr.write("Spotify is off\n")
-        sys.exit(1)
+    body = reply.body[0]
+    return body[1]
 
 
 def perform_spotify_action(spotify_command):
@@ -259,19 +311,24 @@ def perform_spotify_action(spotify_command):
           '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
           spotify_command, shell=True, stdout=PIPE)
 
+
 def show_position():
     metadata = get_spotify_property("Metadata")
     position_raw = get_spotify_property("Position")
     # Both values are in microseconds
     position = datetime.timedelta(milliseconds=position_raw / 1000)
-    length = datetime.timedelta(milliseconds=metadata['mpris:length'][1] / 1000)
+    length = datetime.timedelta(
+        milliseconds=metadata['mpris:length'][1] / 1000
+    )
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)
     l_hours, l_minutes, l_seconds = convert_timedelta(length)
 
     if l_hours != "00":
         # Only show hours if the song is more than an hour long
-        print(f'({p_hours}:{p_minutes}:{p_seconds}/{l_hours}:{l_minutes}:{l_seconds})')
+        current = f'{p_hours}:{p_minutes}:{p_seconds}'
+        full = f'{l_hours}:{l_minutes}:{l_seconds}'
+        print(f'({current}/{full})')
     else:
         print(f'({p_minutes}:{p_seconds}/{l_minutes}:{l_seconds})')
 

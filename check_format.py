@@ -1,4 +1,5 @@
-from os import system
+from subprocess import call
+import sys
 
 files = [
     "spotifycli/spotifycli.py",
@@ -10,9 +11,12 @@ files = [
 
 
 def check_format():
+    any_failed = False
     for i in files:
-        system(f"pycodestyle --show-source --show-pep8 --format=default {i}")
+        exit_code = call(["pycodestyle", "--show-source", "--show-pep8", "--format=default", i])
+        any_failed |= True if exit_code == 1 else False
+    return any_failed
 
 
 if __name__ == "__main__":
-    check_format()
+    sys.exit(check_format())
