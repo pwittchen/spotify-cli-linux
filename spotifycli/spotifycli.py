@@ -58,9 +58,10 @@ def main():
         perform_spotify_action("Next")
     elif args.prev:
         perform_spotify_action("Previous")
-    elif args.openuri:
-        perform_spotify_action("OpenUri", f"string:spotify:track:{args.openuri}")
-
+    elif args.songuri:
+        perform_spotify_action("OpenUri", f"string:spotify:track:{args.songuri}")
+    elif args.listuri:
+        perform_spotify_action("OpenUri", f"string:spotify:playlist:{args.listuri}")
 
 def start_shell():
     while True:
@@ -113,7 +114,8 @@ def get_arguments():
         ("--lyrics", "shows the lyrics for the song", False),
         ("--next", "plays the next song", False),
         ("--prev", "plays the previous song", False),
-        ("--openuri", "plays the track at the provided Uri", True),
+        ("--songuri", "plays the track at the provided Uri", True),
+        ("--listuri", "plays the playlist at the provided Uri", True),
     ]
 
 
