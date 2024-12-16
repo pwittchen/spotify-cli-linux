@@ -66,6 +66,12 @@ def main():
             perform_spotify_action("Next")
         elif args.prev:
             perform_spotify_action("Previous")
+        elif args.songuri:
+            song_specifier = f"string:spotify:track:{args.songuri}"
+            perform_spotify_action("OpenUri", song_specifier)
+        elif args.listuri:
+            list_specifier = f"string:spotify:playlist:{args.listuri}"
+            perform_spotify_action("OpenUri", list_specifier)
     except SpotifyCLIException as e:
         # When SpotifyCLIException is raised, we can assume these are
         # known issues, and the exception text is sufficiently helpful.
@@ -103,7 +109,8 @@ def start_shell():
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
-        parser.add_argument(argument[0], help=argument[1], action="store_true")
+        arg_type = 'store' if argument[2] else 'store_true'
+        parser.add_argument(argument[0], help=argument[1], action=arg_type)
     parser.add_argument("--client", action="store", dest="client",
                         help="sets client's dbus name", default="spotify")
     return parser.parse_args()
@@ -131,7 +138,9 @@ def get_arguments():
         ("--playpause", "plays or pauses the song (toggles a state)"),
         ("--lyrics", "shows the lyrics for the song"),
         ("--next", "plays the next song"),
-        ("--prev", "plays the previous song")
+        ("--prev", "plays the previous song"),
+        ("--songuri", "plays the track at the provided Uri", True),
+        ("--listuri", "plays the playlist at the provided Uri", True),
     ]
 
 
@@ -305,11 +314,20 @@ def get_spotify_property(spotify_property):
     return body[1]
 
 
-def perform_spotify_action(spotify_command):
-    Popen('dbus-send --print-reply --dest=org.mpris.MediaPlayer2."%s" ' %
-          client +
-          '/org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player."%s"' %
-          spotify_command, shell=True, stdout=PIPE)
+def perform_spotify_action(spotify_command, extra_arg=None):
+    command_list = [
+        "dbus-send",
+        "--print-reply",
+        f"--dest=org.mpris.MediaPlayer2.{client}",
+        "/org/mpris/MediaPlayer2",
+        f"org.mpris.MediaPlayer2.Player.{spotify_command}",
+    ]
+    if extra_arg is not None:
+        command_list.append(extra_arg)
+    # could avoid this by taking out shell=False below
+    # but I don't want to stomp on any of the shell side effects
+    command_string = " ".join(command_list)
+    Popen(command_string, shell=True, stdout=PIPE)
 
 
 def show_position():
