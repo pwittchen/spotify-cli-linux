@@ -1,6 +1,15 @@
 CHANGELOG
 =========
 
+v. 1.9.0
+--------
+*17 Dec 2024*
+
+- Add error handling in many locations, new SpotifyCLIException, and update formatting and format checker (#85)
+- Add --songuri and --listuri to enable playing a song or playlist Uri (#86)
+    - Add --openuri to allow specifying a song Uri to play
+    - Add --listuri
+
 v. 1.8.3
 --------
 *9 Dec 2024*
