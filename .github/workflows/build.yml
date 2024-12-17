@@ -9,10 +9,10 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-20.04  # TODO: This will be deprecated soon, should probably move to ubuntu-24.04
     strategy:
       matrix:
-        python-version: ["3.6", "3.7"]
+        python-version: ["3.6", "3.7"]  # TODO: Both of these have reached end of life, should probably move to 3.12+
     steps:
     - name: checkout
       uses: actions/checkout@v3
@@ -25,3 +25,5 @@ jobs:
       run: pip install -r requirements.txt
     - name: check-format
       run: python ./check_format.py
+    - name: run-tests
+      run: pytest

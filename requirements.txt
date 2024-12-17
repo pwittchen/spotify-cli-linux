@@ -1,7 +1,9 @@
 autopep8
+python-dbusmock
 jeepney
 lyricwikia
 pycodestyle
 pylint
+pytest
 setuptools
 twine
