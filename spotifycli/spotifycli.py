@@ -313,17 +313,8 @@ def get_spotify_property(spotify_property):
                 f"Could not connect to Spotify instance, full response:\n{err}"
             )
 
-    # the reply body holds a tuple of possible response objects
-    reply_body = reply.body
-
-    # grab the first (only) response object, a tuple of signature, data
-    content = reply_body[0]
-
-    # get the data member off of the content, since we don't need the signature
-    response = content[1]
-
-    # the return type is expected to be a dictionary
-    return response
+    body = reply.body[0]
+    return body[1]
 
 
 def perform_spotify_action(spotify_command, extra_arg=None):
