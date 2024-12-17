@@ -1,2 +1,3 @@
+import sys
 from .spotifycli import main
-main()
+sys.exit(main())
