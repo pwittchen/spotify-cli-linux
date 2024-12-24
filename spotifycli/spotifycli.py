@@ -109,10 +109,25 @@ def start_shell():
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
-        arg_type = 'store' if argument[2] else 'store_true'
-        parser.add_argument(argument[0], help=argument[1], action=arg_type)
-    parser.add_argument("--client", action="store", dest="client",
-                        help="sets client's dbus name", default="spotify")
+        if len(argument) > 2 and argument[2]:
+            arg_type = 'store'
+        else:
+            arg_type = 'store_true'
+
+        parser.add_argument(
+            argument[0],
+            help=argument[1],
+            action=arg_type
+        )
+
+    parser.add_argument(
+        "--client",
+        action="store",
+        dest="client",
+        help="sets client's dbus name",
+        default="spotify"
+    )
+
     return parser.parse_args()
 
 
