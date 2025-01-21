@@ -155,8 +155,8 @@ configure your `~/.pypirc` file as follows:
 index-servers =
     pypi
 [pypi]
-username:yourusername
-password:yourpassword
+username = __token__
+password = VALID_TOKEN_GOES_HERE
 ```
 
 then, update version in `spotifycli/version.py` and `spotifycli/spotifycli.py` and type:
