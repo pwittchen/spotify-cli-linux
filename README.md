@@ -67,6 +67,8 @@ use one of the following parameters:
 --playpause       plays or pauses the song (toggles a state)
 --next            plays the next song
 --prev            plays the previous song
+--songuri OPENURI plays the track at the provided Uri
+--listuri OPENURI plays the playlist at the provided Uri
 --client CLIENT   sets client's dbus name
 ```
 
@@ -74,22 +76,6 @@ if you don't use any parameters, you'll enter the shell mode, where you'll be ab
 
 solving problems
 ----------------
-
-### dbus
-
-When you've seen the following error:
-
-```
-No module named dbus
-```
-
-Then try to install `python-dbus`! On Ubuntu you can do it as follows:
-
-```
-sudo apt-get install python-dbus
-```
-
-If you are using another distro, then try to install `python-dbus` with your package manager.
 
 ### lyricwikia
 
@@ -160,6 +146,8 @@ view it on-line at https://pwittchen.github.io/spotify-cli-linux
 releasing
 ---------
 
+currently release is automated via `deploy.yml` GitHub Action, but it can be done manually too
+
 configure your `~/.pypirc` file as follows:
 
 ```
@@ -167,8 +155,8 @@ configure your `~/.pypirc` file as follows:
 index-servers =
     pypi
 [pypi]
-username:yourusername
-password:yourpassword
+username = __token__
+password = VALID_TOKEN_GOES_HERE
 ```
 
 then, update version in `spotifycli/version.py` and `spotifycli/spotifycli.py` and type:
@@ -178,4 +166,3 @@ make release
 ```
 
 **note**: Version is not kept in a single file due to problems with importing files within another file and distributing them to PyPi. There are also Python vesion issues. If you know how to fix this issue properly to keep version in one place, I'd be happy to review your PR :-).
-
