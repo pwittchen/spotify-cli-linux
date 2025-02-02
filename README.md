@@ -4,7 +4,7 @@
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
-This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
+If you're using macOS, see [spotify-cli-macos](https://github.com/pwittchen/spotify-cli-macos).
 
 installation
 ------------
