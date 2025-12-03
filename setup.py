@@ -3,7 +3,7 @@ from distutils.core import setup
 from spotifycli.version import __version__
 
 setup(
-    name='spotify-cli-linux',
+    name='spotify_cli_linux',
     version=__version__,
     python_requires='>=3.12.7',
     description="a command line interface to Spotify on Linux",
