@@ -13,7 +13,9 @@ import lyriq
 from jeepney import DBusAddress, new_method_call
 from jeepney.io.blocking import open_dbus_connection
 
+
 logging.getLogger("lyriq.lyriq").setLevel(logging.CRITICAL)
+
 
 class SpotifyCLIException(Exception):
     """An exception wrapper purely to handle known exceptions nicely"""

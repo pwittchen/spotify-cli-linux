@@ -5,7 +5,7 @@ from spotifycli.version import __version__
 setup(
     name='spotify-cli-linux',
     version=__version__,
-    python_requires='>=3.6',
+    python_requires='>=3.12.7',
     description="a command line interface to Spotify on Linux",
     long_description=open('README.md').read(),
     long_description_content_type="text/markdown",
@@ -24,8 +24,7 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.6',
-        'Programming Language :: Python :: 3.7',
+        'Programming Language :: Python :: 3.12.7',
         'Topic :: Multimedia :: Sound/Audio'
     ],
 )
