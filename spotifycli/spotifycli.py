@@ -10,12 +10,10 @@ import datetime
 from subprocess import Popen, PIPE
 import logging
 import lyriq
-
-logging.getLogger("lyriq.lyriq").setLevel(logging.CRITICAL)
-
 from jeepney import DBusAddress, new_method_call
 from jeepney.io.blocking import open_dbus_connection
 
+logging.getLogger("lyriq.lyriq").setLevel(logging.CRITICAL)
 
 class SpotifyCLIException(Exception):
     """An exception wrapper purely to handle known exceptions nicely"""
@@ -232,10 +230,9 @@ def show_song_short():
 def show_lyrics():
     artist, title = get_song()
     lyrics = lyriq.get_lyrics(title, artist)
-    
+
     if lyrics is None:
         print(f"Lyrics for '{title}' by {artist} were not found.")
-        print("This could happen if the track is missing from the lyrics database or is unsupported.")
         return
 
     print(lyrics.plain_lyrics)
