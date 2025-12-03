@@ -8,8 +8,10 @@ import sys
 import textwrap
 import datetime
 from subprocess import Popen, PIPE
+import logging
+import lyriq
 
-import lyricwikia
+logging.getLogger("lyriq.lyriq").setLevel(logging.CRITICAL)
 
 from jeepney import DBusAddress, new_method_call
 from jeepney.io.blocking import open_dbus_connection
@@ -229,14 +231,14 @@ def show_song_short():
 
 def show_lyrics():
     artist, title = get_song()
-    try:
-        lyrics = lyricwikia.get_all_lyrics(artist, title)
-    except lyricwikia.LyricsNotFound:
-        raise SpotifyCLIException(
-            'Lyrics not found or could not connect'
-        ) from None
-    lyrics = ''.join(lyrics[0])
-    print(lyrics)
+    lyrics = lyriq.get_lyrics(title, artist)
+    
+    if lyrics is None:
+        print(f"Lyrics for '{title}' by {artist} were not found.")
+        print("This could happen if the track is missing from the lyrics database or is unsupported.")
+        return
+
+    print(lyrics.plain_lyrics)
 
 
 def show_artist():

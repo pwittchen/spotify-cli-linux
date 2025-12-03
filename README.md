@@ -77,12 +77,12 @@ if you don't use any parameters, you'll enter the shell mode, where you'll be ab
 solving problems
 ----------------
 
-### lyricwikia
+### lyriq
 
-When, you're missing `lyricwikia` dependency, run the following command:
+When, you're missing `lyriq` dependency, run the following command:
 
 ```
-pip install lyricwikia
+pip install lyriq
 ```
 
 usage with tmux
