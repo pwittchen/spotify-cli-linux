@@ -135,27 +135,28 @@ def add_arguments():
 
 def get_arguments():
     return [
-        ("--version", "shows version number"),
-        ("--status", "shows song name and artist"),
+        ("--version", "shows version number", False),
+        ("--status", "shows song name and artist", False),
         (
             "--statusposition",
-            "shows song name and artist, with current playback position"
+            "shows song name and artist, with current playback position",
+            False
         ),
-        ("--statusshort", "shows status in a short way"),
-        ("--song", "shows the song name"),
-        ("--songshort", "shows the song name in a short way"),
-        ("--artist", "shows artist name"),
-        ("--artistshort", "shows artist name in a short way"),
-        ("--album", "shows album name"),
-        ("--position", "shows song position"),
-        ("--arturl", "shows album image url"),
-        ("--playbackstatus", "shows playback status"),
-        ("--play", "plays the song"),
-        ("--pause", "pauses the song"),
-        ("--playpause", "plays or pauses the song (toggles a state)"),
-        ("--lyrics", "shows the lyrics for the song"),
-        ("--next", "plays the next song"),
-        ("--prev", "plays the previous song"),
+        ("--statusshort", "shows status in a short way", False),
+        ("--song", "shows the song name", False),
+        ("--songshort", "shows the song name in a short way", False),
+        ("--artist", "shows artist name", False),
+        ("--artistshort", "shows artist name in a short way", False),
+        ("--album", "shows album name", False),
+        ("--position", "shows song position", False),
+        ("--arturl", "shows album image url", False),
+        ("--playbackstatus", "shows playback status", False),
+        ("--play", "plays the song", False),
+        ("--pause", "pauses the song", False),
+        ("--playpause", "plays or pauses the song (toggles a state)", False),
+        ("--lyrics", "shows the lyrics for the song", False),
+        ("--next", "plays the next song", False),
+        ("--prev", "plays the previous song", False),
         ("--songuri", "plays the track at the provided Uri", True),
         ("--listuri", "plays the playlist at the provided Uri", True),
     ]
@@ -167,7 +168,9 @@ def show_version():
 
 def get_song():
     metadata = get_spotify_property("Metadata")
-    artist = ", ".join(metadata['xesam:artist'][1])
+    artist = metadata['xesam:artist'][1]
+    if isinstance(artist, list):
+        artist = ", ".join(artist)
     title = metadata['xesam:title'][1]
     return artist, title
 
@@ -192,9 +195,9 @@ def show_status_position():
     artist, title = get_song()
 
     # Both values are in microseconds
-    position = datetime.timedelta(milliseconds=position_raw / 1000)
+    position = datetime.timedelta(milliseconds=int(position_raw) / 1000)
     length = datetime.timedelta(
-        milliseconds=metadata['mpris:length'][1] / 1000
+        milliseconds=int(metadata['mpris:length'][1]) / 1000
     )
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)
@@ -350,9 +353,9 @@ def show_position():
     metadata = get_spotify_property("Metadata")
     position_raw = get_spotify_property("Position")
     # Both values are in microseconds
-    position = datetime.timedelta(milliseconds=position_raw / 1000)
+    position = datetime.timedelta(milliseconds=int(position_raw) / 1000)
     length = datetime.timedelta(
-        milliseconds=metadata['mpris:length'][1] / 1000
+        milliseconds=int(metadata['mpris:length'][1]) / 1000
     )
 
     p_hours, p_minutes, p_seconds = convert_timedelta(position)

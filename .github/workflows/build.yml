@@ -22,3 +22,5 @@ jobs:
       run: pip install -r requirements.txt
     - name: check-format
       run: python ./check_format.py
+    - name: run-tests
+      run: pytest
