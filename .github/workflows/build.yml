@@ -10,16 +10,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        python-version: ["3.7"]
     steps:
     - name: checkout
       uses: actions/checkout@v3
     - name: setup-python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.7'
+        python-version: '3.14.1'
         cache: 'pip'
     - name: install-requirements
       run: pip install -r requirements.txt
