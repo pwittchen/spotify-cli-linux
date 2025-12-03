@@ -1,10 +1,10 @@
 # spotify-cli-linux
 
- [![Build](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml) [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/) [![Python versions](https://img.shields.io/pypi/pyversions/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
+ [![Build](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml) [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
-This project is inspired by the similar project called [shpotify](https://github.com/hnarayanan/shpotify), which does similar things, but on macOS.
+If you're using macOS, see [spotify-cli-macos](https://github.com/pwittchen/spotify-cli-macos).
 
 installation
 ------------
@@ -77,12 +77,12 @@ if you don't use any parameters, you'll enter the shell mode, where you'll be ab
 solving problems
 ----------------
 
-### lyricwikia
+### lyriq
 
-When, you're missing `lyricwikia` dependency, run the following command:
+When, you're missing `lyriq` dependency, run the following command:
 
 ```
-pip install lyricwikia
+pip install lyriq
 ```
 
 usage with tmux
