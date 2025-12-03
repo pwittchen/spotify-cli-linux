@@ -24,7 +24,6 @@ setup(
         'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
         'Operating System :: POSIX :: Linux',
         'Programming Language :: Python',
-        'Programming Language :: Python :: 3.12.7',
         'Topic :: Multimedia :: Sound/Audio'
     ],
 )
