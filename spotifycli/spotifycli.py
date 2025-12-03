@@ -8,11 +8,13 @@ import sys
 import textwrap
 import datetime
 from subprocess import Popen, PIPE
-
-import lyricwikia
-
+import logging
+import lyriq
 from jeepney import DBusAddress, new_method_call
 from jeepney.io.blocking import open_dbus_connection
+
+
+logging.getLogger("lyriq.lyriq").setLevel(logging.CRITICAL)
 
 
 class SpotifyCLIException(Exception):
@@ -109,10 +111,25 @@ def start_shell():
 def add_arguments():
     parser = argparse.ArgumentParser(description=__doc__)
     for argument in get_arguments():
-        arg_type = 'store' if argument[2] else 'store_true'
-        parser.add_argument(argument[0], help=argument[1], action=arg_type)
-    parser.add_argument("--client", action="store", dest="client",
-                        help="sets client's dbus name", default="spotify")
+        if len(argument) > 2 and argument[2]:
+            arg_type = 'store'
+        else:
+            arg_type = 'store_true'
+
+        parser.add_argument(
+            argument[0],
+            help=argument[1],
+            action=arg_type
+        )
+
+    parser.add_argument(
+        "--client",
+        action="store",
+        dest="client",
+        help="sets client's dbus name",
+        default="spotify"
+    )
+
     return parser.parse_args()
 
 
@@ -146,7 +163,7 @@ def get_arguments():
 
 
 def show_version():
-    print("1.9.0")
+    print("1.9.1")
 
 
 def get_song():
@@ -217,14 +234,13 @@ def show_song_short():
 
 def show_lyrics():
     artist, title = get_song()
-    try:
-        lyrics = lyricwikia.get_all_lyrics(artist, title)
-    except lyricwikia.LyricsNotFound:
-        raise SpotifyCLIException(
-            'Lyrics not found or could not connect'
-        ) from None
-    lyrics = ''.join(lyrics[0])
-    print(lyrics)
+    lyrics = lyriq.get_lyrics(title, artist)
+
+    if lyrics is None:
+        print(f"Lyrics for '{title}' by {artist} were not found.")
+        return
+
+    print(lyrics.plain_lyrics)
 
 
 def show_artist():

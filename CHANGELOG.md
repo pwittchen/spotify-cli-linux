@@ -1,6 +1,12 @@
 CHANGELOG
 =========
 
+v. 1.9.1
+--------
+*01 Jan 2025*
+
+- Fix IndexError and line length issues in spotifycli.py for Python 3.13 (#89) by @panpeacemaker
+
 v. 1.9.0
 --------
 *17 Dec 2024*

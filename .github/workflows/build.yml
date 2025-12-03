@@ -9,17 +9,14 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04  # TODO: This will be deprecated soon, should probably move to ubuntu-24.04
-    strategy:
-      matrix:
-        python-version: ["3.6", "3.7"]  # TODO: Both of these have reached end of life, should probably move to 3.12+
+    runs-on: ubuntu-latest
     steps:
     - name: checkout
       uses: actions/checkout@v3
     - name: setup-python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.6'
+        python-version: '3.12.7'
         cache: 'pip'
     - name: install-requirements
       run: pip install -r requirements.txt

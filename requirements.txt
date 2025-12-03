@@ -1,7 +1,7 @@
 autopep8
 python-dbusmock
 jeepney
-lyricwikia
+lyriq
 pycodestyle
 pylint
 pytest
