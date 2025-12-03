@@ -1,6 +1,6 @@
 autopep8
 jeepney
-lyricwikia
+lyriq
 pycodestyle
 pylint
 setuptools

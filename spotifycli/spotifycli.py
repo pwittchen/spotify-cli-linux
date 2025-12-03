@@ -234,7 +234,6 @@ def show_lyrics():
     lyrics = lyriq.get_lyrics(title, artist)
     
     if lyrics is None:
-        # Lyrics not found
         print(f"Lyrics for '{title}' by {artist} were not found.")
         print("This could happen if the track is missing from the lyrics database or is unsupported.")
         return
