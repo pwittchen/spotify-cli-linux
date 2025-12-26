@@ -58,6 +58,8 @@ def main():
             show_lyrics()
         elif args.arturl:
             show_art_url()
+        elif args.clear:
+            clear_cli()
         elif args.play:
             perform_spotify_action("Play")
         elif args.pause:
@@ -156,6 +158,7 @@ def get_arguments():
         ("--lyrics", "shows the lyrics for the song"),
         ("--next", "plays the next song"),
         ("--prev", "plays the previous song"),
+        ("--clear", "clear the terminal"),
         ("--songuri", "plays the track at the provided Uri", True),
         ("--listuri", "plays the playlist at the provided Uri", True),
     ]
@@ -163,6 +166,9 @@ def get_arguments():
 
 def show_version():
     print("2.0.0")
+
+def clear_cli():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 
 def get_song():
