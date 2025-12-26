@@ -167,6 +167,7 @@ def get_arguments():
 def show_version():
     print("2.0.0")
 
+
 def clear_cli():
     os.system('cls' if os.name == 'nt' else 'clear')
 
