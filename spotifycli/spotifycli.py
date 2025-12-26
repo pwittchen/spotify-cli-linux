@@ -165,7 +165,7 @@ def get_arguments():
 
 
 def show_version():
-    print("2.0.0")
+    print("2.1.0")
 
 
 def clear_cli():
