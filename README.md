@@ -1,15 +1,14 @@
 # spotify-cli-linux
 
- [![Build](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml) 
- [![Deploy](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/deploy.yml/badge.svg)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/deploy.yml)
- [![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
+[![Build](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml/badge.svg?branch=master)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/build.yml)
+[![Deploy](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/deploy.yml/badge.svg)](https://github.com/pwittchen/spotify-cli-linux/actions/workflows/deploy.yml)
+[![Version](https://img.shields.io/pypi/v/spotify-cli-linux.svg?style=flat-square)](https://pypi.python.org/pypi/spotify-cli-linux/)
 
 A command line interface to [Spotify](https://www.spotify.com/) on Linux.
 
 If you're using macOS, see [spotify-cli-macos](https://github.com/pwittchen/spotify-cli-macos).
 
-installation
-------------
+## installation
 
 ```
 pip install spotify-cli-linux
@@ -27,8 +26,7 @@ cd spotify-cli-linux
 sudo cp spotifycli/spotifycli.py /usr/local/bin/spotifycli
 ```
 
-upgrade
--------
+## upgrade
 
 ```
 pip install spotify-cli-linux --upgrade
@@ -36,8 +34,7 @@ pip install spotify-cli-linux --upgrade
 
 for the upgrade, you can apply the same hints like for installation
 
-usage
------
+## usage
 
 start the official Spotify desktop app
 
@@ -69,6 +66,7 @@ use one of the following parameters:
 --playpause       plays or pauses the song (toggles a state)
 --next            plays the next song
 --prev            plays the previous song
+--clear           clear the terminal
 --songuri OPENURI plays the track at the provided Uri
 --listuri OPENURI plays the playlist at the provided Uri
 --client CLIENT   sets client's dbus name
@@ -76,8 +74,7 @@ use one of the following parameters:
 
 if you don't use any parameters, you'll enter the shell mode, where you'll be able to use all commands mentioned above
 
-solving problems
-----------------
+## solving problems
 
 ### lyriq
 
@@ -87,13 +84,11 @@ When, you're missing `lyriq` dependency, run the following command:
 pip install lyriq
 ```
 
-usage with tmux
----------------
+## usage with tmux
 
 If you want to use this script in your tmux panel, you can check [tmux-plugin-spotify](https://github.com/pwittchen/tmux-plugin-spotify).
 
-development
------------
+## development
 
 to install necessary tools for code formatting, static code analysis and releasing, run:
 
@@ -101,8 +96,7 @@ to install necessary tools for code formatting, static code analysis and releasi
 make requirements
 ```
 
-code formatting
----------------
+## code formatting
 
 Source code should be formatted according to [PEP8](https://www.python.org/dev/peps/pep-0008/) style guides.
 
@@ -118,8 +112,7 @@ to verify code formatting, type:
 make checkformat
 ```
 
-static code analysis
---------------------
+## static code analysis
 
 To run static code analysis, execute:
 
@@ -127,8 +120,7 @@ To run static code analysis, execute:
 make lint
 ```
 
-docs
-----
+## docs
 
 to update docs on `gh-pages`, type:
 
@@ -137,6 +129,7 @@ make docs
 ```
 
 to run docs locally, type:
+
 ```
 git checkout gh-pages && ./serve.sh
 ```
@@ -145,8 +138,7 @@ and view page with docs at: 0.0.0.0:8000
 
 view it on-line at https://pwittchen.github.io/spotify-cli-linux
 
-releasing
----------
+## releasing
 
 currently release is automated via `deploy.yml` GitHub Action, but it can be done manually too
 
