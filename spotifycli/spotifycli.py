@@ -263,7 +263,7 @@ def show_playback_status():
     print({"Playing": '▶',
            "Paused": '▮▮',
            "Stopped": '■'
-           }[playback_status])
+           }.get(playback_status, playback_status))
 
 
 def show_album():
